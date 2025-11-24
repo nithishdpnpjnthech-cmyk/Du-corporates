@@ -63,8 +63,15 @@
         }
 
         .du-contact-form input::placeholder,
-        .du-contact-form textarea::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+        .du-contact-form textarea::placeholder,
+        .du-contact-form input::-webkit-input-placeholder,
+        .du-contact-form textarea::-webkit-input-placeholder,
+        .du-contact-form input::-moz-placeholder,
+        .du-contact-form textarea::-moz-placeholder,
+        .du-contact-form input:-ms-input-placeholder,
+        .du-contact-form textarea:-ms-input-placeholder {
+            color: rgba(255,255,255,0.7) !important;
+            opacity: 1 !important;
         }
 
         .du-contact-form .submit-btn {
@@ -4029,25 +4036,23 @@ flexibility(document.documentElement);
                             data-id="18fde68" data-element_type="widget" data-widget_type="text-editor.default">
                             <div class="elementor-widget-container">
                                 <!-- Contact form (desktop) -->
-                                <form id="contact-form" method="post" class="du-contact-form">
-                                    <div class="form-group" style="width: 100%;">
-                                        <input type="text" name="name" placeholder="Name" style="color: #000;" required>
-                                    </div>
-                                    <div class="form-group" style="width: 100%;">
-                                        <input type="email" name="email" placeholder="Email" style="color: #000;"
-                                            required>
-                                    </div>
-                                    <div class="form-group" style="width: 100%;">
-                                        <input type="tel" name="phone" placeholder="Phone" style="color: #000;"
-                                            required>
-                                    </div>
-                                    <div class="form-group" style="width: 100%;">
-                                        <textarea name="message" placeholder="Message" rows="4" required></textarea>
-                                    </div>
-                                    <button type="submit" class="submit-btn">Submit</button>
-                                </form>
-                                <p id="response"></p>
-                                </script>
+                                <form id="contact-form" class="du-contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                    <p id="response"></p>
+                               
                             </div>
 
                         </div>
@@ -4056,7 +4061,41 @@ flexibility(document.documentElement);
 
                         </div>
                     </div>
+<script>
+        // Post the form as FormData (Apps Script doPost handles form data better).
 
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyilf4gg_awI-fm31dMLa4WxxIMV2DTh_4jLZ_wGNZocBCt74cx13eeZ0MMRGbbDpaP/exec'; // Apps Script Web App URL
+
+        (function () {
+            const form = document.getElementById('contact-form');
+            if (!form) return;
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const fd = new FormData(form);
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: fd,
+                    mode: 'cors'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('response').textContent = 'Form submitted successfully.';
+                        form.reset();
+                    } else {
+                        return response.text().then(t => { throw new Error(t || 'Submission failed'); });
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('response').textContent = 'Submission failed (see console).';
+                    console.error('Form submit error:', err);
+                });
+            });
+        })();
+
+    </script>
                 </div>
                 <div class="elementor-element elementor-element-6c36342 e-flex e-con-boxed e-con e-parent"
                     data-id="6c36342" data-element_type="container">
@@ -4385,34 +4424,7 @@ flexibility(document.documentElement);
         </div>
 
     </div>
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxhCzbH0GGcDZkiuKzXgCe9oIVkYtW5jZ6TyYcwZfpNs9QGTo3gtH5mfi8D8k0RXaSl/exec'; // Replace with your Apps Script Web App URL
-
-        document.getElementById('contact-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const data = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                message: document.getElementById('message').value
-            };
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(data)
-            })
-                .then(response => response.text())
-                .then(result => {
-                    alert("Form submitted successfully!");
-                    document.getElementById('contact-form').reset();
-                })
-                .catch(error => {
-                    alert("Error submitting form.");
-                    console.error('Error!', error.message);
-                });
-        });
-
-    </script>
+    
     <script>
         const lazyloadRunObserver = () => {
             const lazyloadBackgrounds = document.querySelectorAll(`.e-con.e-parent:not(.e-lazyloaded)`);
