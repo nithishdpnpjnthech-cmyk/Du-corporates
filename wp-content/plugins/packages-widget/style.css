@@ -1,0 +1,495 @@
+/* CSS for Packages Widget - FLEXBOX APPROACH */
+
+/* FLEXBOX SOLUTION - More reliable for centering */
+
+html body .elementor .elementor-widget-packages_widget .packages-container,
+html body .packages-container,
+body .elementor .elementor-widget-packages_widget .packages-container,
+body .packages-container,
+.elementor-widget-packages_widget .packages-container,
+.packages-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 30px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Desktop Layout - Flexbox approach */
+
+@media (min-width: 1025px) {
+    /* 1 package - centered */
+    html body .elementor .elementor-widget-packages_widget .packages-container.packages-count-1,
+    html body .packages-container.packages-count-1,
+    body .elementor .elementor-widget-packages_widget .packages-container.packages-count-1,
+    body .packages-container.packages-count-1,
+    .elementor-widget-packages_widget .packages-container.packages-count-1,
+    .packages-container.packages-count-1 {
+        max-width: 400px !important;
+    }
+    .packages-count-1 .package-card {
+        flex: 0 0 350px !important;
+    }
+    /* 2 packages - centered */
+    html body .elementor .elementor-widget-packages_widget .packages-container.packages-count-2,
+    html body .packages-container.packages-count-2,
+    body .elementor .elementor-widget-packages_widget .packages-container.packages-count-2,
+    body .packages-container.packages-count-2,
+    .elementor-widget-packages_widget .packages-container.packages-count-2,
+    .packages-container.packages-count-2 {
+        max-width: 800px !important;
+    }
+    .packages-count-2 .package-card {
+        flex: 0 0 calc(50% - 15px) !important;
+    }
+    /* 3 packages - centered - FLEXBOX SOLUTION */
+    html body .elementor .elementor-widget-packages_widget .packages-container.packages-count-3,
+    html body .packages-container.packages-count-3,
+    body .elementor .elementor-widget-packages_widget .packages-container.packages-count-3,
+    body .packages-container.packages-count-3,
+    .elementor-widget-packages_widget .packages-container.packages-count-3,
+    .packages-container.packages-count-3 {
+        max-width: 1200px !important;
+        justify-content: center !important;
+    }
+    .packages-count-3 .package-card {
+        flex: 0 0 calc(33.333% - 20px) !important;
+        max-width: 350px !important;
+    }
+    /* 4+ packages */
+    html body .elementor .elementor-widget-packages_widget .packages-container.packages-count-4,
+    html body .elementor .elementor-widget-packages_widget .packages-container.packages-count-5,
+    html body .elementor .elementor-widget-packages_widget .packages-container.packages-count-6,
+    html body .packages-container.packages-count-4,
+    html body .packages-container.packages-count-5,
+    html body .packages-container.packages-count-6,
+    body .elementor .elementor-widget-packages_widget .packages-container.packages-count-4,
+    body .elementor .elementor-widget-packages_widget .packages-container.packages-count-5,
+    body .elementor .elementor-widget-packages_widget .packages-container.packages-count-6,
+    body .packages-container.packages-count-4,
+    body .packages-container.packages-count-5,
+    body .packages-container.packages-count-6,
+    .elementor-widget-packages_widget .packages-container.packages-count-4,
+    .elementor-widget-packages_widget .packages-container.packages-count-5,
+    .elementor-widget-packages_widget .packages-container.packages-count-6,
+    .packages-container.packages-count-4,
+    .packages-container.packages-count-5,
+    .packages-container.packages-count-6 {
+        max-width: 1600px !important;
+    }
+    .packages-count-4 .package-card,
+    .packages-count-5 .package-card,
+    .packages-count-6 .package-card {
+        flex: 0 0 calc(25% - 22.5px) !important;
+        max-width: 350px !important;
+    }
+}
+
+/* Tablet Layout - 2 columns with flexbox */
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    html body .elementor .elementor-widget-packages_widget .packages-container,
+    html body .packages-container,
+    body .elementor .elementor-widget-packages_widget .packages-container,
+    body .packages-container,
+    .elementor-widget-packages_widget .packages-container,
+    .packages-container {
+        gap: 20px !important;
+        max-width: 800px !important;
+        padding: 15px !important;
+    }
+    .package-card {
+        flex: 0 0 calc(50% - 10px) !important;
+        max-width: none !important;
+    }
+}
+
+/* Mobile Layout - Single column with flexbox */
+
+@media (max-width: 768px) {
+    html body .elementor .elementor-widget-packages_widget .packages-container,
+    html body .packages-container,
+    body .elementor .elementor-widget-packages_widget .packages-container,
+    body .packages-container,
+    .elementor-widget-packages_widget .packages-container,
+    .packages-container {
+        gap: 20px !important;
+        max-width: 400px !important;
+        padding: 15px !important;
+    }
+    .package-card {
+        flex: 0 0 100% !important;
+        max-width: none !important;
+    }
+}
+
+.package-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+}
+
+.new-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #1f2937;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.package-header {
+    padding: 10px 24px 0px;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+}
+
+.package-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(30px, -30px);
+    z-index: 1;
+}
+
+.package-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.contract-duration {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+    z-index: 2;
+}
+
+.pricing-section {
+    position: relative;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 0 24px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.original-price {
+    font-size: 14px;
+    text-decoration: line-through;
+    opacity: 0.7;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 0px !important;
+    right: 10px;
+    background: linear-gradient(135deg, #FF6F00 0%, #FF3D00 100%);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.discount-percentage {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.discount-label {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.current-price {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+    margin: 15px 0 10px 0;
+}
+
+.current-price .currency {
+    font-size: 0.5em;
+    margin-right: 5px;
+    align-self: flex-start;
+}
+
+.current-price .price-suffix {
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-left: 5px;
+    align-self: flex-end;
+}
+
+.rental-discount {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.package-content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0px !important;
+    justify-content: space-between;
+}
+
+.benefits-heading {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.speed-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.features-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px !important;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 0;
+}
+
+.feature-icon {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--feature-icon-color, #6b7280);
+    flex-shrink: 0;
+}
+
+.feature-text {
+    font-size: 14px;
+    color: #374151;
+    font-weight: 500;
+}
+
+.streaming-section {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 0px;
+    margin-top: 10px;
+}
+
+.favourites-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.streaming-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.service-item {
+    background: #e5e7eb;
+    color: #4b5563;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.subscriptions-text {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin-top: 0;
+}
+
+.price-note {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.package-footer {
+    padding: 24px;
+    background-color: #f9fafb;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.plan-details-btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px 24px;
+    background: linear-gradient(to left, #24243e, #302b63, #0f0c29) !important;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.plan-details-btn:hover {
+    border-color: #9ca3af;
+    color: #374151;
+}
+
+.buy-now-btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px 24px;
+    background: linear-gradient(to left, #24243e, #302b63, #0f0c29) !important;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.buy-now-btn:hover {
+    background: linear-gradient(135deg, #be185d 0%, #9d174d 100%);
+    transform: translateY(-2px);
+}
+
+/* Mobile responsive adjustments */
+
+@media (max-width: 768px) {
+    .package-card {
+        min-height: auto;
+    }
+    .package-header {
+        padding: 24px 20px 16px;
+    }
+    .package-title {
+        font-size: 20px;
+    }
+    .current-price {
+        font-size: 40px;
+    }
+    .current-price .currency {
+        font-size: 0.4em;
+    }
+    .current-price .price-suffix {
+        font-size: 14px;
+    }
+    .package-content {
+        padding: 20px;
+        gap: 15px;
+    }
+    .package-footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+    }
+    .discount-badge {
+        width: 60px;
+        height: 60px;
+        top: -15px;
+        right: 15px;
+    }
+    .discount-percentage {
+        font-size: 16px;
+    }
+    .discount-label {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .streaming-services {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .service-item {
+        width: 100%;
+        justify-content: center;
+    }
+}
