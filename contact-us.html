@@ -1,43 +1,88 @@
 <!DOCTYPE html>
 <html lang="en-US" itemscope itemtype="http://schema.org/WebPage">
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-    <style>
-        img:is([sizes="auto" i], [sizes^="auto," i]) {
-            contain-intrinsic-size: 3000px 1500px}
+<script>
+        // Post the form as FormData (Apps Script doPost handles form data better).
 
-        html, body, #page { overflow-x: hidden !important; max-width: 100vw !important; }
-        img, .elementor, .elementor-widget { max-width: 100% !important; }
-        * { box-sizing: border-box; }
-    
+        if (typeof window._du_scriptURL === 'undefined') {
+            window._du_scriptURL = 'https://script.google.com/macros/s/AKfycbyilf4gg_awI-fm31dMLa4WxxIMV2DTh_4jLZ_wGNZocBCt74cx13eeZ0MMRGbbDpaP/exec'; // Apps Script Web App URL
+        }
+        (function () {
+            const form = document.getElementById('contact-form');
+            if (!form) return;
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const fd = new FormData(form);
+
+                fetch(window._du_scriptURL, {
+                    method: 'POST',
+                    body: fd,
+                    mode: 'cors'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('response').textContent = 'Form submitted successfully.';
+                        form.reset();
+                    } else {
+                        return response.text().then(t => { throw new Error(t || 'Submission failed'); });
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('response').textContent = 'Submission failed (see console).';
+                    console.error('Form submit error:', err);
+                });
+            });
+        })();
+
+    </script>
+
+    <!-- Side-drawer mobile menu script (copied from index.html) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create overlay element
+            const overlay = document.createElement('div');
+            overlay.className = 'mobile-menu-overlay';
+            document.body.appendChild(overlay);
+
+            // Create side menu container
+            const sideMenu = document.createElement('div');
+            sideMenu.className = 'mobile-side-menu';
+
+            // Logo section
+            const logoSection = document.createElement('div');
+            logoSection.className = 'mobile-menu-logo';
+            const originalLogo = document.querySelector('.elementor-widget-theme-site-logo img, .site-logo img, img[alt*="logo"], img[alt*="Logo"]');
+            if (originalLogo) { logoSection.appendChild(originalLogo.cloneNode(true)); } else { logoSection.innerHTML = '<strong style="font-size:18px">Menu</strong>'; }
+
+            const closeBtn = document.createElement('div');
+            closeBtn.className = 'mobile-menu-close';
+            closeBtn.innerHTML = '✕';
+            closeBtn.setAttribute('aria-label', 'Close Menu');
+
+            const menuItemsContainer = document.createElement('div');
+            menuItemsContainer.className = 'mobile-menu-items';
+            const originalMenu = document.querySelector('nav.hfe-nav-menu__layout-horizontal ul');
+            if (originalMenu) { menuItemsContainer.appendChild(originalMenu.cloneNode(true)); }
+
+            sideMenu.appendChild(closeBtn);
+            sideMenu.appendChild(logoSection);
+            sideMenu.appendChild(menuItemsContainer);
+            document.body.appendChild(sideMenu);
+
+            const toggleBtn = document.querySelector('.hfe-nav-menu__toggle');
+            function openMenu(){ overlay.classList.add('active'); sideMenu.classList.add('active'); document.body.style.overflow = 'hidden'; }
+            function closeMenu(){ overlay.classList.remove('active'); sideMenu.classList.remove('active'); document.body.style.overflow = ''; }
+            if (toggleBtn) { toggleBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); openMenu(); }); }
+            closeBtn.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
+            const menuLinks = sideMenu.querySelectorAll('a');
+            menuLinks.forEach(link => link.addEventListener('click', () => setTimeout(closeMenu, 200)));
+        });
+    </script>
         
-
-        /* Contact Form Styles */
-        .du-contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: #302b63;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        @media (max-width: 767px) {
-            .du-contact-form {
-                padding: 20px;
-                margin: 0;
-                border-radius: 10px;
-            }
-        }
-
+<style>
         /* Hide reCAPTCHA badge */
         .grecaptcha-badge {
             display: none !important;
@@ -179,6 +224,30 @@
             }]
         }
     </script>
+    <!-- Mobile side-drawer menu styles (copied from index.html) -->
+    <style>
+        @media (max-width: 1024px) {
+            nav.hfe-nav-menu__layout-horizontal { display: none !important; }
+            .mobile-menu-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index:9998; opacity:0; transition: opacity 0.3s ease; }
+            .mobile-menu-overlay.active { display:block; opacity:1; }
+            .mobile-side-menu { position: fixed; top:0; right:-100%; width:85%; max-width:400px; height:100%; background:#fff; z-index:9999; transition: right 0.3s ease; overflow-y:auto; box-shadow:-2px 0 10px rgba(0,0,0,0.1); }
+            .mobile-side-menu.active { right:0; }
+            .mobile-menu-logo { padding:20px; border-bottom:1px solid #e5e5e5; }
+            .mobile-menu-logo img { width:50px; height:auto; }
+            .mobile-menu-close { position:absolute; top:20px; right:20px; width:40px; height:40px; background:transparent; border:2px solid #333; border-radius:4px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:300; color:#333; z-index:10000; }
+            .mobile-menu-close:hover { background:#f0f0f0; }
+            .mobile-menu-items { padding:0; }
+            .mobile-menu-items ul { list-style:none; margin:0; padding:0; }
+            .mobile-menu-items ul li { border-bottom:1px solid #e5e5e5; }
+            .mobile-menu-items ul li a { display:block; padding:18px 20px; color:#000; text-decoration:none; font-size:15px; font-weight:400; }
+            .mobile-menu-items ul li a:hover { background:#f8f8f8; }
+            .hfe-nav-menu__toggle { display:block !important; cursor:pointer !important; z-index:10000 !important; }
+        }
+        @media (min-width: 1025px) {
+            .elementor-hidden-desktop, .elementor-hidden-tablet, .nfd-hide-desktop { display:none !important; visibility:hidden !important; height:0 !important; overflow:hidden !important; }
+            .hfe-nav-menu__toggle, .mobile-side-menu, .mobile-menu-overlay { display:none !important; }
+        }
+    </style>
     <!-- / Yoast SEO Premium plugin. -->
 
 
@@ -910,7 +979,7 @@
         }
 
         .nfd-wc-products {
-            self-align: flex-start !important;
+            align-self: flex-start !important;
             flex-grow: 0 !important
         }
 
@@ -4064,8 +4133,9 @@ flexibility(document.documentElement);
 <script>
         // Post the form as FormData (Apps Script doPost handles form data better).
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyilf4gg_awI-fm31dMLa4WxxIMV2DTh_4jLZ_wGNZocBCt74cx13eeZ0MMRGbbDpaP/exec'; // Apps Script Web App URL
-
+        if (typeof window._du_scriptURL === 'undefined') {
+            window._du_scriptURL = 'https://script.google.com/macros/s/AKfycbyilf4gg_awI-fm31dMLa4WxxIMV2DTh_4jLZ_wGNZocBCt74cx13eeZ0MMRGbbDpaP/exec'; // Apps Script Web App URL
+        }
         (function () {
             const form = document.getElementById('contact-form');
             if (!form) return;
@@ -4075,7 +4145,7 @@ flexibility(document.documentElement);
 
                 const fd = new FormData(form);
 
-                fetch(scriptURL, {
+                fetch(window._du_scriptURL, {
                     method: 'POST',
                     body: fd,
                     mode: 'cors'

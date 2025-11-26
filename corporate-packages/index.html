@@ -1063,7 +1063,7 @@
         }
 
         .nfd-wc-products {
-            self-align: flex-start !important;
+            align-self: flex-start !important;
             flex-grow: 0 !important
         }
 
@@ -6443,210 +6443,34 @@ flexibility(document.documentElement);
             }
         })();
     </script>
-    <!-- Promotional Popup -->
-    <div id="promo-popup" class="popup-overlay" style="display: none;">
-        <div class="popup-content">
-            <button id="close-popup" class="close-btn">&times;</button>
-            <div class="popup-header">
-                <h2>Exclusive Corporate Offer!</h2>
-                <p>Get the best internet plans for your business.</p>
-            </div>
-            <div class="popup-body">
-                <p>Sign up now to get a free consultation and exclusive discounts.</p>
-                <form id="popupContactForm">
-                    <input type="text" id="Name" name="name" placeholder="Your Name" required>
-                    <input type="tel" id="Phone" name="phone" placeholder="Phone Number" required>
-                    <button type="submit" class="submit-btn">Get Offer</button>
-                </form>
-                <p class="popup-response" id="popupResponse" style="margin-top: 10px; font-size: 0.9em;"></p>
-            </div>
-        </div>
-    </div>
+    <!-- Promotional popup moved to a standalone page: /popup.html -->
     <script>
-        // Google Apps Script URL for form submission
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbztCBZc3VPXCtQsVQabC6OWnUV-xuGCshC7n8zAAegRsethwQRJmnHutiJXVslwcK0v/exec'; // Replace with your Apps Script Web App URL
-
-        document.getElementById('popupContactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const data = {
-                Name: document.getElementById('Name').value,
-                Phone: document.getElementById('Phone').value,
-            };
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(data)
-            })
-                .then(response => response.text())
-                .then(result => {
-                    alert("Form submitted successfully!");
-                    document.getElementById('contact-form').reset();
-                })
-
-        });
-    </script>
-    <style>
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .popup-overlay.show {
-            opacity: 1;
-        }
-
-        .popup-content {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-
-        .popup-overlay.show .popup-content {
-            transform: translateY(0);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: #555;
-            line-height: 1;
-        }
-
-        .popup-header h2 {
-            color: #302b63;
-            margin-bottom: 10px;
-            margin-top: 0;
-        }
-
-        .popup-body p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .popup-body input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-
-        .submit-btn {
-            background: #302b63;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            width: 100%;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-            transition: background 0.3s;
-            font-weight: bold;
-        }
-
-        .submit-btn:hover {
-            background: #4a438a;
-        }
-    </style>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                var popup = document.getElementById('promo-popup');
-                popup.style.display = 'flex';
-                // Trigger reflow to enable transition
-                popup.offsetHeight;
-                popup.classList.add('show');
-            }, 3000); // 3 seconds delay
-
-            document.getElementById('close-popup').addEventListener('click', function () {
-                var popup = document.getElementById('promo-popup');
-                popup.classList.remove('show');
-                setTimeout(function () {
-                    popup.style.display = 'none';
-                }, 300);
-            });
-
-            // Close on click outside
-            document.getElementById('promo-popup').addEventListener('click', function (e) {
-                if (e.target === this) {
-                    this.classList.remove('show');
-                    setTimeout(function () {
-                        this.style.display = 'none';
-                    }.bind(this), 300);
-                }
-            });
-
-            // Form submission logic
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyusyH-p1A6aZS6PMDt5ofVIY4x12QyQf4dFZjlIx1AGHXatPnV3yZHKL8VHSHWtthC/exec';
-            const form = document.getElementById('popup-form');
-
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-                const submitBtn = form.querySelector('.submit-btn');
-                const originalText = submitBtn.innerText;
-                submitBtn.innerText = 'Sending...';
-                submitBtn.disabled = true;
-
-                const data = {
-                    name: document.getElementById('popup-name').value,
-                    phone: document.getElementById('popup-phone').value,
-                    source: 'Corporate Popup'
-                };
-
-                fetch(scriptURL, {
-                    method: 'POST',
-                    body: JSON.stringify(data)
-                })
-                    .then(response => response.text())
-                    .then(result => {
-                        document.getElementById('popup-response').innerText = "Thanks! We'll contact you soon.";
-                        document.getElementById('popup-response').style.color = "green";
-                        form.reset();
-                        submitBtn.innerText = originalText;
-                        submitBtn.disabled = false;
-                        setTimeout(() => {
-                            var popup = document.getElementById('promo-popup');
-                            popup.classList.remove('show');
-                            setTimeout(function () {
-                                popup.style.display = 'none';
-                            }, 300);
-                        }, 2000);
-                    })
-                    .catch(error => {
-                        document.getElementById('popup-response').innerText = "Error submitting form.";
-                        document.getElementById('popup-response').style.color = "red";
-                        submitBtn.innerText = originalText;
-                        submitBtn.disabled = false;
-                    });
-            });
-        });
+        (function(){
+            function openPopupIframe(){
+                if(document.getElementById('site-popup-iframe-overlay')) return;
+                var overlay = document.createElement('div');
+                overlay.id = 'site-popup-iframe-overlay';
+                overlay.style.position = 'fixed'; overlay.style.left = 0; overlay.style.top = 0; overlay.style.width = '100%'; overlay.style.height = '100%'; overlay.style.background = 'rgba(0,0,0,0.6)'; overlay.style.display = 'flex'; overlay.style.alignItems = 'center'; overlay.style.justifyContent = 'center'; overlay.style.zIndex = 999999;
+                var iframe = document.createElement('iframe'); iframe.src = '/popup.html'; iframe.style.width = '420px'; iframe.style.maxWidth = '92%'; iframe.style.height = 'auto'; iframe.style.border = '0'; iframe.style.borderRadius = '12px'; iframe.style.boxShadow = '0 10px 30px rgba(0,0,0,.25)';
+                overlay.appendChild(iframe); document.body.appendChild(overlay);
+                overlay.addEventListener('click', function(e){ if(e.target === overlay){ document.body.removeChild(overlay); } });
+                window.addEventListener('message', function(e){
+                    if(!e.data) return;
+                    if(e.data.type === 'popup-close'){
+                        if(document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay'));
+                    }
+                    if(e.data.type === 'popup-submitted'){
+                        setTimeout(function(){ if(document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay')); },900);
+                    }
+                    if(e.data.type === 'popup-height'){
+                        try{
+                            if(iframe && e.data.height){ iframe.style.height = (parseInt(e.data.height,10) + 24) + 'px'; }
+                        }catch(err){/*ignore*/}
+                    }
+                }, {passive:true});
+            }
+            document.addEventListener('DOMContentLoaded', function(){ setTimeout(openPopupIframe,3000); });
+        })();
     </script>
 
     <script>
