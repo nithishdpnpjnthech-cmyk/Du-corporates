@@ -5407,7 +5407,62 @@ flexibility(document.documentElement);
     </script>
 
     <!-- Promotional popup moved to a standalone page: /popup.html -->
-   
+    <script>
+        (function(){
+            function openPopupIframe(){
+                if(document.getElementById('site-popup-iframe-overlay')) return;
+                var overlay = document.createElement('div');
+                overlay.id = 'site-popup-iframe-overlay';
+                overlay.style.position = 'fixed';
+                overlay.style.left = 0;
+                overlay.style.top = 0;
+                overlay.style.width = '100%';
+                overlay.style.height = '100%';
+                overlay.style.background = 'rgba(0,0,0,0.6)';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.padding = '20px';
+                overlay.style.boxSizing = 'border-box';
+                overlay.style.zIndex = 999999;
+                overlay.style.overflowY = 'auto';
+                var iframe = document.createElement('iframe');
+                iframe.src = '/popup.html';
+                iframe.style.width = '420px';
+                iframe.style.maxWidth = '92%';
+                iframe.style.height = 'auto';
+                iframe.style.border = '0';
+                iframe.style.borderRadius = '12px';
+                iframe.style.boxShadow = '0 10px 30px rgba(0,0,0,.25)';
+                iframe.style.maxHeight = 'calc(100vh - 40px)';
+                overlay.appendChild(iframe);
+                document.body.appendChild(overlay);
+                overlay.addEventListener('click', function(e){ if(e.target === overlay){ document.body.removeChild(overlay); } });
+                window.addEventListener('message', function(e){
+                    if(!e.data) return;
+                    if(e.data.type === 'popup-close'){
+                        if(document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay'));
+                    }
+                    if(e.data.type === 'popup-submitted'){
+                        setTimeout(function(){ if(document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay')); },900);
+                    }
+                    if(e.data.type === 'popup-height'){
+                        try{
+                            if(iframe && e.data.height){
+                                var buffer = 24;
+                                var requested = parseInt(e.data.height,10) + buffer;
+                                var maxAllowed = Math.max(window.innerHeight - 48, 200);
+                                var finalH = Math.min(requested, maxAllowed);
+                                iframe.style.height = finalH + 'px';
+                                iframe.style.maxHeight = (maxAllowed) + 'px';
+                            }
+                        }catch(err){/*ignore*/}
+                    }
+                }, {passive:true});
+            }
+            document.addEventListener('DOMContentLoaded', function(){ setTimeout(openPopupIframe,3000); });
+        })();
+    </script>
 
 </body>
 

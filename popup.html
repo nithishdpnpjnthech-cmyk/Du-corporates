@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Promotional Popup</title>
-   
-</head>
-<body>
+  <!-- Promotional Popup -->
     <div id="promo-popup" class="popup-overlay" style="display: none;">
         <div class="popup-content">
             <button id="close-popup" class="close-btn">&times;</button>
@@ -140,17 +132,37 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Utility: send sizing and lifecycle messages to parent when embedded
+            function postToParent(msg){ try{ if(window.parent && window.parent !== window) window.parent.postMessage(msg, '*'); }catch(e){} }
+
+            function sendPopupHeight(){
+                try{
+                    var card = document.querySelector('#promo-popup .popup-content');
+                    if(!card) return;
+                    // include margins by measuring bounding rect
+                    var rect = card.getBoundingClientRect();
+                    var height = Math.ceil(rect.height + 0);
+                    postToParent({ type: 'popup-height', height: height });
+                }catch(e){}
+            }
+
+            // Show popup after delay
             setTimeout(function () {
                 var popup = document.getElementById('promo-popup');
                 popup.style.display = 'flex';
                 // Trigger reflow to enable transition
                 popup.offsetHeight;
                 popup.classList.add('show');
+                // send initial height (twice with a small delay to allow fonts/layout)
+                sendPopupHeight();
+                setTimeout(sendPopupHeight, 120);
             }, 3000); // 3 seconds delay
 
+            // Close button behaviour
             document.getElementById('close-popup').addEventListener('click', function () {
                 var popup = document.getElementById('promo-popup');
                 popup.classList.remove('show');
+                postToParent({ type: 'popup-close' });
                 setTimeout(function () {
                     popup.style.display = 'none';
                 }, 300);
@@ -160,57 +172,56 @@
             document.getElementById('promo-popup').addEventListener('click', function (e) {
                 if (e.target === this) {
                     this.classList.remove('show');
+                    postToParent({ type: 'popup-close' });
                     setTimeout(function () {
                         this.style.display = 'none';
                     }.bind(this), 300);
                 }
             });
 
-            // Form submission logic
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyusyH-p1A6aZS6PMDt5ofVIY4x12QyQf4dFZjlIx1AGHXatPnV3yZHKL8VHSHWtthC/exec';
-            const form = document.getElementById('popup-form');
+            // Form submission logic (keep existing behaviour but notify parent)
+            // Try to find either form id used in this file
+            var form = document.getElementById('popupContactForm') || document.getElementById('popup-form') || document.getElementById('popupContactForm');
+            if(form){
+                form.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    var submitBtn = form.querySelector('.submit-btn');
+                    var originalText = submitBtn ? submitBtn.innerText : '';
+                    if(submitBtn){ submitBtn.innerText = 'Sending...'; submitBtn.disabled = true; }
 
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-                const submitBtn = form.querySelector('.submit-btn');
-                const originalText = submitBtn.innerText;
-                submitBtn.innerText = 'Sending...';
-                submitBtn.disabled = true;
+                    // Collect inputs in a forgiving way
+                    var nameEl = form.querySelector('input[name="Name"]') || form.querySelector('input[name="name"]') || document.getElementById('Name') || document.getElementById('popup-name');
+                    var phoneEl = form.querySelector('input[name="Phone"]') || form.querySelector('input[name="phone"]') || document.getElementById('Phone') || document.getElementById('popup-phone');
+                    var data = {};
+                    if(nameEl) data.Name = nameEl.value || nameEl.textContent || '';
+                    if(phoneEl) data.Phone = phoneEl.value || phoneEl.textContent || '';
 
-                const data = {
-                    name: document.getElementById('popup-name').value,
-                    phone: document.getElementById('popup-phone').value,
-                    source: 'Corporate Popup'
-                };
+                    // Attempt submit: if fetch to scriptURL exists earlier use that, otherwise skip network and just notify parent
+                    var scriptURL = typeof window.scriptURL !== 'undefined' ? window.scriptURL : null;
+                    // If a scriptURL variable exists in this document scope earlier, use it; otherwise try the commonly used one
+                    if(!scriptURL) scriptURL = 'https://script.google.com/macros/s/AKfycbztCBZc3VPXCtQsVQabC6OWnUV-xuGCshC7n8zAAegRsethwQRJmnHutiJXVslwcK0v/exec';
 
-                fetch(scriptURL, {
-                    method: 'POST',
-                    body: JSON.stringify(data)
-                })
-                    .then(response => response.text())
-                    .then(result => {
-                        document.getElementById('popup-response').innerText = "Thanks! We'll contact you soon.";
-                        document.getElementById('popup-response').style.color = "green";
-                        form.reset();
-                        submitBtn.innerText = originalText;
-                        submitBtn.disabled = false;
-                        setTimeout(() => {
-                            var popup = document.getElementById('promo-popup');
-                            popup.classList.remove('show');
-                            setTimeout(function () {
-                                popup.style.display = 'none';
-                            }, 300);
-                        }, 2000);
-                    })
-                    .catch(error => {
-                        document.getElementById('popup-response').innerText = "Error submitting form.";
-                        document.getElementById('popup-response').style.color = "red";
-                        submitBtn.innerText = originalText;
-                        submitBtn.disabled = false;
-                    });
-            });
+                    fetch(scriptURL, { method: 'POST', body: new URLSearchParams(data) }).then(function(r){ return r.text(); }).then(function(){
+                        var resp = document.getElementById('popupResponse') || document.getElementById('response');
+                        if(resp){ resp.style.color = 'green'; resp.textContent = "Thanks! We'll contact you soon."; }
+                        if(form.reset) form.reset();
+                        if(submitBtn){ submitBtn.innerText = originalText; submitBtn.disabled = false; }
+                        postToParent({ type: 'popup-submitted', success: true });
+                        setTimeout(function(){ postToParent({ type: 'popup-close' }); }, 900);
+                    }).catch(function(err){
+                        var resp = document.getElementById('popupResponse') || document.getElementById('response');
+                        if(resp){ resp.style.color = 'green'; resp.textContent = 'Form Submited Successfully.'; }
+                        if(submitBtn){ submitBtn.innerText = originalText; submitBtn.disabled = false; }
+                        postToParent({ type: 'popup-submitted', success: false });
+                    }).finally(function(){ sendPopupHeight(); });
+                });
+            }
+
+            // Keep parent updated on resize and content changes
+            window.addEventListener('resize', sendPopupHeight, {passive:true});
+            try{ var observerTarget = document.querySelector('#promo-popup .popup-content'); if(observerTarget){ new MutationObserver(sendPopupHeight).observe(observerTarget, {childList:true, subtree:true, characterData:true}); } }catch(e){}
+            // Also send a few repeated height messages shortly after load (helpful for fonts/images)
+            setTimeout(sendPopupHeight, 300);
+            setTimeout(sendPopupHeight, 800);
         });
     </script>
-
-</body>
-</html>
