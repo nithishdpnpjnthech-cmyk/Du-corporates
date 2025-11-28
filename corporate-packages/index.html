@@ -132,55 +132,133 @@
                 cursor: pointer !important;
                 z-index: 10000 !important;
             }
-        }
+            }
+
+            /* Force-hide mobile-only elements on desktop and desktop-only on mobile
+               in case theme/plugin responsive classes are not applied correctly. */
+            @media (min-width: 1025px) {
+                .elementor-hidden-desktop,
+                .elementor-hidden-tablet,
+                .nfd-hide-desktop {
+                    display: none !important;
+                    visibility: hidden !important;
+                    height: 0 !important;
+                    overflow: hidden !important;
+                }
+
+                /* Hide mobile-specific UI on large screens (hamburger, side menu, overlays) */
+                .hfe-nav-menu__toggle,
+                .mobile-side-menu,
+                .mobile-menu-overlay {
+                    display: none !important;
+                }
+            }
+
+            @media (max-width: 1024px) {
+                /* Ensure items marked as mobile-hidden stay hidden on small screens */
+                .elementor-hidden-mobile,
+                .nfd-hide-mobile {
+                    display: none !important;
+                    visibility: hidden !important;
+                }
+
+                /* Keep the horizontal desktop menu hidden on mobile (defensive) */
+                nav.hfe-nav-menu__layout-horizontal {
+                    display: none !important;
+                }
+            }
     </style>
+
+    <!-- Defensive overflow fixes to remove unexpected horizontal scrolling -->
+    <style>
+        /* Hide any page-level horizontal overflow (safe default) */
+        html, body {
+            overflow-x: hidden !important;
+            box-sizing: border-box;
+        }
+
+        /* Ensure main layout containers cannot exceed the viewport width */
+        #page, .elementor, .e-con-inner, .packages-container, header, .hfe-nav-menu {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+        }
+
+        /* Prevent oversized images from creating scrollbars */
+        img, .elementor-widget img, .hfe-site-logo-img {
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+        }
+
+        /* Defensive: marquee/track elements should not cause page overflow */
+        .du-offer-viewport, .du-offer-track {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+        }
+
+        /* Avoid transform/backface artifacts producing scrollbars */
+        * { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+    </style>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- This site is optimized with the Yoast SEO Premium plugin v24.9 (Yoast SEO v26.4) - https://yoast.com/wordpress/plugins/seo/ -->
-    <title>du Corporate Internet Plans - Business Solutions UAE</title>
+    <title>du Corporate Packages UAE | business.duconnect.ae</title>
     <meta name="description"
-        content="Special corporate offers: du company packages with free IPTV, VoIP lines &amp; priority support. Ideal for offices, hotels &amp; retail chains in UAE." />
-    <link rel="canonical" href="https://www.duauthorizedpartner.com/corporate-packages/" />
+        content="Compare du corporate internet packages with managed WiFi, VoIP, IPTV and on-site installation anywhere in the UAE. Priority provisioning for offices, hotels and retail brands." />
+    <meta name="keywords"
+        content="du corporate packages, business internet UAE, du business solutions, du corporate plans, du office internet, duconnect business" />
+    <link rel="canonical" href="https://business.duconnect.ae/" />
+    <link rel="alternate" href="https://business.duconnect.ae/" hreflang="x-default" />
+    <link rel="alternate" href="https://business.duconnect.ae/" hreflang="en-ae" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Corporate Packages" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="du Corporate Packages UAE | business.duconnect.ae" />
     <meta property="og:description"
-        content="Special corporate offers: du company packages with free IPTV, VoIP lines &amp; priority support. Ideal for offices, hotels &amp; retail chains in UAE." />
-    <meta property="og:url" content="https://www.duauthorizedpartner.com/corporate-packages/" />
-    <meta property="og:site_name" content="du Authorised" />
-    <meta property="article:modified_time" content="2025-09-01T11:37:51+00:00" />
+        content="Secure enterprise-grade internet, voice and managed WiFi bundles with guaranteed SLA-backed support from du across Dubai, Abu Dhabi and the Northern Emirates." />
+    <meta property="og:url" content="https://business.duconnect.ae/" />
+    <meta property="og:site_name" content="business.duconnect.ae" />
+    <meta property="og:image"
+        content="https://business.duconnect.ae/wp-content/uploads/2025/05/Corporate-Packages-banner1.png" />
+    <meta property="og:image:alt" content="du corporate internet packages in the UAE" />
+    <meta property="article:modified_time" content="2025-11-28T00:00:00+00:00" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="du Corporate Packages UAE | business.duconnect.ae" />
+    <meta name="twitter:description"
+        content="Priority du business internet, voice and IPTV packages with concierge delivery, SLA monitoring and digital add-ons for UAE enterprises." />
+    <meta name="twitter:image"
+        content="https://business.duconnect.ae/wp-content/uploads/2025/05/Corporate-Packages-banner1.png" />
     <meta name="twitter:label1" content="Est. reading time" />
-    <meta name="twitter:data1" content="3 minutes" />
+    <meta name="twitter:data1" content="4 minutes" />
     <script type="application/ld+json" class="yoast-schema-graph">
         {
             "@context": "https://schema.org",
             "@graph": [{
                 "@type": "WebPage",
-                "@id": "https://www.duauthorizedpartner.com/corporate-packages/",
-                "url": "https://www.duauthorizedpartner.com/corporate-packages/",
-                "name": "du Corporate Internet Plans - Business Solutions UAE",
+                "@id": "https://business.duconnect.ae/#webpage",
+                "url": "https://business.duconnect.ae/",
+                "name": "du Corporate Packages UAE | business.duconnect.ae",
                 "isPartOf": {
-                    "@id": "https://www.duauthorizedpartner.com/#website"
+                    "@id": "https://business.duconnect.ae/#website"
                 },
                 "datePublished": "2025-04-14T10:38:24+00:00",
-                "dateModified": "2025-09-01T11:37:51+00:00",
-                "description": "Special corporate offers: du company packages with free IPTV, VoIP lines & priority support. Ideal for offices, hotels & retail chains in UAE.",
+                "dateModified": "2025-11-28T00:00:00+00:00",
+                "description": "Compare du corporate internet packages with managed WiFi, VoIP, IPTV and on-site installation anywhere in the UAE. Priority provisioning for offices, hotels and retail brands.",
                 "breadcrumb": {
-                    "@id": "https://www.duauthorizedpartner.com/corporate-packages/#breadcrumb"
+                    "@id": "https://business.duconnect.ae/#breadcrumb"
                 },
                 "inLanguage": "en-US",
                 "potentialAction": [{
                     "@type": "ReadAction",
-                    "target": ["https://www.duauthorizedpartner.com/corporate-packages/"]
+                    "target": ["https://business.duconnect.ae/"]
                 }]
             }, {
                 "@type": "BreadcrumbList",
-                "@id": "https://www.duauthorizedpartner.com/corporate-packages/#breadcrumb",
+                "@id": "https://business.duconnect.ae/#breadcrumb",
                 "itemListElement": [{
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://www.duauthorizedpartner.com/"
+                    "item": "https://business.duconnect.ae/"
                 }, {
                     "@type": "ListItem",
                     "position": 2,
@@ -188,15 +266,15 @@
                 }]
             }, {
                 "@type": "WebSite",
-                "@id": "https://www.duauthorizedpartner.com/#website",
-                "url": "https://www.duauthorizedpartner.com/",
-                "name": "du Authorised",
-                "description": "du Authorised Partner",
+                "@id": "https://business.duconnect.ae/#website",
+                "url": "https://business.duconnect.ae/",
+                "name": "business.duconnect.ae",
+                "description": "du corporate internet & voice solutions for UAE enterprises",
                 "potentialAction": [{
                     "@type": "SearchAction",
                     "target": {
                         "@type": "EntryPoint",
-                        "urlTemplate": "https://www.duauthorizedpartner.com/?s={search_term_string}"
+                        "urlTemplate": "https://business.duconnect.ae/?s={search_term_string}"
                     },
                     "query-input": {
                         "@type": "PropertyValueSpecification",
@@ -453,6 +531,57 @@
                 width: 100%;
                 max-width: 350px;
             }
+        }
+    </style>
+    <style id="du-faq-styles">
+        .du-faq-section {
+            padding: 60px 20px;
+            background: #f4f7fb;
+            color: #0f172a;
+        }
+
+        .du-faq-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .du-faq-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            text-transform: capitalize;
+        }
+
+        .du-faq-section p.section-lede {
+            font-size: 1rem;
+            color: #4b5563;
+            margin-bottom: 30px;
+        }
+
+        .du-faq-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .du-faq-card {
+            background: #fff;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.06);
+        }
+
+        .du-faq-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        .du-faq-card p {
+            margin: 0;
+            color: #475467;
+            line-height: 1.5;
+            font-size: 0.95rem;
         }
     </style>
     <link rel='stylesheet' id='hfe-widgets-style-css'
@@ -1063,7 +1192,7 @@
         }
 
         .nfd-wc-products {
-            align-self: flex-start !important;
+            self-align: flex-start !important;
             flex-grow: 0 !important
         }
 
@@ -3750,17 +3879,17 @@
 flexibility(document.documentElement);
 </script>
 <![endif]-->
-    <link rel="https://api.w.org/" href="https://www.duauthorizedpartner.com/wp-json/" />
+    <link rel="https://api.w.org/" href="/wp-json/" />
     <link rel="alternate" title="JSON" type="application/json"
-        href="https://www.duauthorizedpartner.com/wp-json/wp/v2/pages/234" />
+        href="/wp-json/wp/v2/pages/234" />
     <link rel="EditURI" type="application/rsd+xml" title="RSD"
-        href="https://www.duauthorizedpartner.com/xmlrpc.php?rsd" />
+        href="/xmlrpc.php?rsd" />
     <meta name="generator" content="WordPress 6.8.3" />
-    <link rel='shortlink' href='https://www.duauthorizedpartner.com/?p=234' />
+    <link rel='shortlink' href='/?p=234' />
     <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"
-        href="https://www.duauthorizedpartner.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.duauthorizedpartner.com%2Fcorporate-packages%2F" />
+        href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.duauthorizedpartner.com%2Fcorporate-packages%2F" />
     <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"
-        href="https://www.duauthorizedpartner.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.duauthorizedpartner.com%2Fcorporate-packages%2F&#038;format=xml" />
+        href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.duauthorizedpartner.com%2Fcorporate-packages%2F&#038;format=xml" />
     <meta name="theme-color" content="#302b63">
     <meta name="generator"
         content="Elementor 3.33.1; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
@@ -3786,11 +3915,11 @@ flexibility(document.documentElement);
             }
         }
     </style>
-    <link rel="icon" href="../wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-32x32.png" sizes="32x32" />
-    <link rel="icon" href="../wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-192x192.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="../wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-180x180.png" />
+    <link rel="icon" href="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-32x32.png" sizes="32x32" />
+    <link rel="icon" href="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-180x180.png" />
     <meta name="msapplication-TileImage"
-        content="../wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-270x270.png" />
+        content="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-270x270.png" />
 
     <!-- Google Tag Manager -->
     <script>
@@ -3816,10 +3945,10 @@ flexibility(document.documentElement);
         {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "DU Authorized Partner",
-            "url": "https://www.duauthorizedpartner.com",
-            "logo": "../wp-content/uploads/2025/04/Du-Logo@3x-copy-scaled.webp",
-            "description": "Looking for a new internet connection? du offers the best internet plans across the UAE with ultra-fast speed and reliability. Get in touch..",
+            "name": "business.duconnect.ae",
+            "url": "https://business.duconnect.ae",
+            "logo": "https://business.duconnect.ae/wp-content/uploads/2025/04/Du-Logo@3x-copy-scaled.webp",
+            "description": "Authorised du business partner delivering corporate internet, voice, IPTV and managed WiFi solutions across the UAE.",
             "sameAs": [
                 "https://www.facebook.com/DUauthorizePartner",
                 "https://www.instagram.com/du_authorized_partner"
@@ -3828,10 +3957,45 @@ flexibility(document.documentElement);
                 "@type": "ContactPoint",
                 "telephone": "+971 55 351 3081",
                 "contactType": "customer service",
-                "email": "info@duauthorizedpartner.com",
+                "email": "sales@business.duconnect.ae",
                 "areaServed": "AE",
                 "availableLanguage": ["English"]
             }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How fast can our business internet be installed?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Standard fibre locations are activated within 3-5 working days after Ejari validation and ready buildings can go live within 48 hours because we escalate provisioning directly with du."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Which documents are required for du corporate packages?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Submit a valid trade licence, owner Emirates ID, establishment card or visa copy plus the latest Ejari or tenancy contract. Freezone and hospitality projects can add utility letters to speed up surveys."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Do the plans include static IPs and managed security?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Every bundle includes at least one static IPv4 address, enterprise-grade CPE, built-in firewall policies and optional managed security add-ons such as Fortinet SD-WAN or Microsoft Defender."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Can we bundle voice, IPTV or Microsoft 365 with the internet circuit?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Packages combine high-speed internet with SIP voice channels, VoIP handsets, IPTV headend feeds and Microsoft 365 seats so you can match the add-ons and seat counts your site requires."
+                }
+            }]
         }
     </script>
     <!-- Site Wide Schema Markup End -->
@@ -3849,7 +4013,7 @@ flexibility(document.documentElement);
         <header id="masthead" class="site-header" role="banner" itemtype="https://schema.org/WPHeader"
             itemscope="itemscope">
             <header id="masthead" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
-                <p class="main-title bhf-hidden" itemprop="headline"><a href="https://www.duauthorizedpartner.com"
+                <p class="main-title bhf-hidden" itemprop="headline"><a href=""
                         title="du Authorised" rel="home">du Authorised</a></p>
                 <div data-elementor-type="wp-post" data-elementor-id="9" class="elementor elementor-9">
                     <div class="elementor-element elementor-element-111fadf e-con-full elementor-hidden-mobile e-flex e-con e-parent"
@@ -4033,7 +4197,7 @@ flexibility(document.documentElement);
                                             <div class="hfe-site-logo-set">
                                                 <div class="hfe-site-logo-container">
                                                     <img class="hfe-site-logo-img elementor-animation-"
-                                                        src="../wp-content/uploads/2025/04/Du-Logo@3x-copy-scaled.webp"
+                                                        src="/wp-content/uploads/2025/04/Du-Logo@3x-copy-scaled.webp"
                                                         alt="Du Logo@3x" />
                                                 </div>
                                             </div>
@@ -4070,38 +4234,38 @@ flexibility(document.documentElement);
                                             <ul id="menu-1-239c7d0" class="hfe-nav-menu">
                                                 <li id="menu-item-76"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home parent hfe-creative-menu">
-                                                    <a href="#" class="hfe-menu-item">Home</a>
+                                                    <a href="/index.html" class="hfe-menu-item">Home</a>
                                                 </li>
                                                 <li id="menu-item-240"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent hfe-has-submenu hfe-creative-menu">
                                                     <div class="hfe-has-submenu-container" tabindex="0" role="button"
-                                                        aria-haspopup="true" aria-expanded="false"><a href="#"
+                                                        aria-haspopup="true" aria-expanded="false"><a href="/index.html"
                                                             class="hfe-menu-item">Home Packages<span
                                                                 class='hfe-menu-toggle sub-arrow hfe-menu-child-0'><i
                                                                     class='fa'></i></span></a></div>
 
                                                 </li>
                                                 <li id="menu-item-387"
-                                                    class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu">
-                                                    <a href="/corporate-packages/index.html"
+                                                    class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-351 current_page_item parent hfe-creative-menu">
+                                                    <a href="/index.html"
                                                         class="hfe-menu-item">Corporate Packages</a>
                                                 </li>
 
                                                 <li id="menu-item-394"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu">
-                                                    <a href="#" class="hfe-menu-item">Testimonials</a>
+                                                    <a href="/index.html" class="hfe-menu-item">Testimonials</a>
                                                 </li>
                                                 <li id="menu-item-393"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu">
-                                                    <a href="/Blog/blog.html" class="hfe-menu-item">Blog</a>
+                                                    <a href="/blog.html" class="hfe-menu-item">Blog</a>
                                                 </li>
                                                 <li id="menu-item-391"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu">
-                                                    <a href="/about/about.html" class="hfe-menu-item">About Us</a>
+                                                    <a href="/about.html" class="hfe-menu-item">About Us</a>
                                                 </li>
                                                 <li id="menu-item-392"
-                                                    class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-351 current_page_item parent hfe-creative-menu">
-                                                    <a href="/contact-us/contact-us.html" class="hfe-menu-item">Contact
+                                                    class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu ">
+                                                    <a href="/contact-us.html" class="hfe-menu-item">Contact
                                                         Us</a>
                                                 </li>
                                             </ul>
@@ -4117,7 +4281,7 @@ flexibility(document.documentElement);
                                 <div class="elementor-widget-container">
                                     <div class="elementor-button-wrapper">
                                         <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow"
-                                            href="/contact-us/contact-us.html">
+                                            href="/contact-us.html">
                                             <span class="elementor-button-content-wrapper">
                                                 <span class="elementor-button-icon">
                                                     <svg aria-hidden="true" class="e-font-icon-svg e-fab-whatsapp"
@@ -4232,7 +4396,7 @@ flexibility(document.documentElement);
 
                                         <div class="package-footer">
 
-                                            <a href="/contact-us/contact-us.html" class="buy-now-btn">
+                                            <a href="/contact-us.html" class="buy-now-btn">
                                                 Buy Now </a>
                                         </div>
                                     </div>
@@ -4296,7 +4460,7 @@ flexibility(document.documentElement);
 
                                         <div class="package-footer">
 
-                                            <a href="/contact-us/contact-us.html" class="buy-now-btn">
+                                            <a href="/contact-us.html" class="buy-now-btn">
                                                 Buy Now </a>
                                         </div>
                                     </div>
@@ -4693,7 +4857,7 @@ flexibility(document.documentElement);
 
                                     <div class="package-footer">
 
-                                        <a href="/contact-us/contact-us.html" class="buy-now-btn">
+                                        <a href="/contact-us.html" class="buy-now-btn">
                                             Buy Now </a>
                                     </div>
                                 </div>
@@ -4850,7 +5014,7 @@ flexibility(document.documentElement);
 
                                     <div class="package-footer">
 
-                                        <a href="/contact-us/contact-us.html" class="buy-now-btn">
+                                        <a href="/contact-us.html" class="buy-now-btn">
                                             Buy Now </a>
                                     </div>
                                 </div>
@@ -5089,7 +5253,7 @@ flexibility(document.documentElement);
 
                                         <div class="package-footer">
 
-                                            <a href="/contact-us/contact-us.html" class="buy-now-btn">
+                                            <a href="/contact-us.html" class="buy-now-btn">
                                                 Buy Now </a>
                                         </div>
                                     </div>
@@ -5245,7 +5409,7 @@ flexibility(document.documentElement);
 
                                         <div class="package-footer">
 
-                                            <a href="/contact-us/contact-us.html" class="buy-now-btn">
+                                            <a href="/contact-us.html" class="buy-now-btn">
                                                 Buy Now </a>
                                         </div>
                                     </div>
@@ -5470,7 +5634,7 @@ flexibility(document.documentElement);
 
                                         <div class="package-footer">
 
-                                            <a href="/contact-us/contact-us.html" class="buy-now-btn">
+                                            <a href="/contact-us.html" class="buy-now-btn">
                                                 Buy Now </a>
                                         </div>
                                     </div>
@@ -5590,7 +5754,7 @@ flexibility(document.documentElement);
 
                                         <div class="package-footer">
 
-                                            <a href="/contact-us/contact-us.html" class="buy-now-btn">
+                                            <a href="/contact-us.html" class="buy-now-btn">
                                                 Buy Now </a>
                                         </div>
                                     </div>
@@ -5665,11 +5829,35 @@ flexibility(document.documentElement);
                                 </script>
                             </div>
                         </div>
-                    </div>
-                </div>
             </div>
-
         </div>
+    </div>
+    <section id="du-faq" class="du-faq-section" aria-label="du corporate packages frequently asked questions">
+        <div class="du-faq-wrapper">
+            <h2>Corporate Internet FAQs</h2>
+            <p class="section-lede">Answers to the most common questions enterprise IT teams in Dubai, Abu Dhabi and the Northern Emirates ask before activating du corporate packages.</p>
+            <div class="du-faq-list">
+                <article class="du-faq-card">
+                    <h3>How fast can our business internet be installed?</h3>
+                    <p>Standard fibre sites go live in 3&ndash;5 working days after Ejari validation, while priority locations and ready buildings can be activated in as little as 48 hours. Our team escalates provisioning directly with du to keep lead times transparent.</p>
+                </article>
+                <article class="du-faq-card">
+                    <h3>Which documents are required for du corporate packages?</h3>
+                    <p>Submit a valid trade licence, owner Emirates ID, establishment card or visa copy (for mainland firms) and the latest Ejari or tenancy contract. Freezone and hospitality groups can also attach utility letters for smoother site surveys.</p>
+                </article>
+                <article class="du-faq-card">
+                    <h3>Do the plans include static IPs and managed security?</h3>
+                    <p>Yes. Every bundle ships with at least one routable static IPv4 address, enterprise-grade CPE, built-in firewall policies and optional add-ons such as Fortinet SD-WAN, 24&frasl;7 SOC monitoring and Microsoft Defender licences.</p>
+                </article>
+                <article class="du-faq-card">
+                    <h3>Can we bundle voice, IPTV or Microsoft 365 with the internet circuit?</h3>
+                    <p>All featured packages combine high-speed internet with SIP voice, VoIP handsets, IPTV headend feeds and cloud productivity licences. Tell us your preferred seat count and we will provide a custom quote with the right add-ons.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+</div>
         <!-- #main .site-main -->
 
         <footer id="colophon" class="site-footer" role="contentinfo" itemtype="http://schema.org/WPFooter"
@@ -5691,7 +5879,7 @@ flexibility(document.documentElement);
                                         <img width="1960" height="2560"
                                             src="/wp-content/uploads/2025/04/Du-Logo@3x-White-scaled.png"
                                             class="attachment-full size-full wp-image-764" alt="du Authorize Partner"
-                                            srcset="https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-scaled.png 1960w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-230x300.png 230w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-784x1024.png 784w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-768x1003.png 768w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-1176x1536.png 1176w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-1568x2048.png 1568w"
+                                            srcset="/wp-content/uploads/2025/04/Du-Logo@3x-White-scaled.png 1960w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-230x300.png 230w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-784x1024.png 784w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-768x1003.png 768w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-1176x1536.png 1176w, https://www.duauthorizedpartner.com/wp-content/uploads/2025/04/Du-Logo@3x-White-1568x2048.png 1568w"
                                             sizes="(max-width: 1960px) 100vw, 1960px" />
                                     </div>
                                 </div>
@@ -5742,7 +5930,7 @@ flexibility(document.documentElement);
                                                 </a>
                                             </li>
                                             <li class="elementor-icon-list-item">
-                                                <a href="/contact-us/contact-us.html">
+                                                <a href="/contact-us.html">
 
                                                     <span class="elementor-icon-list-text">Contact Us</span>
                                                 </a>
@@ -5767,7 +5955,7 @@ flexibility(document.documentElement);
                                     data-id="ab55d81" data-element_type="widget" data-widget_type="heading.default">
                                     <div class="elementor-widget-container">
                                         <h5 class="elementor-heading-title elementor-size-default"><a
-                                                href="/corporate-packages/index.html">Corporate
+                                                href="/index.html">Corporate
                                                 Package</a></h5>
                                     </div>
                                 </div>
@@ -5922,106 +6110,7 @@ flexibility(document.documentElement);
             }
         })();
     </script>
-    <div id="pum-1818" role="dialog" aria-modal="false"
-        class="pum pum-overlay pum-theme-1810 pum-theme-lightbox popmake-overlay click_open"
-        data-popmake="{&quot;id&quot;:1818,&quot;slug&quot;:&quot;contact&quot;,&quot;theme_id&quot;:1810,&quot;cookies&quot;:[],&quot;triggers&quot;:[{&quot;type&quot;:&quot;click_open&quot;,&quot;settings&quot;:{&quot;cookie_name&quot;:[&quot;pum-1818&quot;],&quot;extra_selectors&quot;:&quot;&quot;}}],&quot;mobile_disabled&quot;:null,&quot;tablet_disabled&quot;:null,&quot;meta&quot;:{&quot;display&quot;:{&quot;stackable&quot;:false,&quot;overlay_disabled&quot;:false,&quot;scrollable_content&quot;:false,&quot;disable_reposition&quot;:false,&quot;size&quot;:&quot;medium&quot;,&quot;responsive_min_width&quot;:&quot;0%&quot;,&quot;responsive_min_width_unit&quot;:false,&quot;responsive_max_width&quot;:&quot;100%&quot;,&quot;responsive_max_width_unit&quot;:false,&quot;custom_width&quot;:&quot;300px&quot;,&quot;custom_width_unit&quot;:false,&quot;custom_height&quot;:&quot;380px&quot;,&quot;custom_height_unit&quot;:false,&quot;custom_height_auto&quot;:&quot;1&quot;,&quot;location&quot;:&quot;center&quot;,&quot;position_from_trigger&quot;:false,&quot;position_top&quot;:&quot;100&quot;,&quot;position_left&quot;:&quot;0&quot;,&quot;position_bottom&quot;:&quot;10&quot;,&quot;position_right&quot;:&quot;10&quot;,&quot;position_fixed&quot;:false,&quot;animation_type&quot;:&quot;fade&quot;,&quot;animation_speed&quot;:&quot;350&quot;,&quot;animation_origin&quot;:&quot;bottom&quot;,&quot;overlay_zindex&quot;:false,&quot;zindex&quot;:&quot;1999999999&quot;},&quot;close&quot;:{&quot;text&quot;:&quot;&quot;,&quot;button_delay&quot;:&quot;0&quot;,&quot;overlay_click&quot;:false,&quot;esc_press&quot;:false,&quot;f4_press&quot;:false},&quot;click_open&quot;:[]}}">
-
-        <div id="popmake-1818"
-            class="pum-container popmake theme-1810 pum-responsive pum-responsive-medium responsive size-medium">
-
-
-
-
-            <div class="pum-content popmake-content" tabindex="0">
-
-                <h2 class="wp-block-heading has-text-align-center" id="h-contact-us">Contact Us</h2>
-
-
-
-                <p class="has-text-align-center"><strong>Please complete this form, our sales team will get in
-                        touch&nbsp;with&nbsp;you.</strong></p>
-
-
-
-                <div class="wpcf7 no-js" id="wpcf7-f1832-o1" lang="en-US" dir="ltr" data-wpcf7-id="1832">
-                    <div class="screen-reader-response">
-                        <p role="status" aria-live="polite" aria-atomic="true"></p>
-                        <ul></ul>
-                    </div>
-                    <form action="/corporate-packages/#wpcf7-f1832-o1" method="post" class="wpcf7-form init"
-                        aria-label="Contact form" novalidate="novalidate" data-status="init">
-                        <fieldset class="hidden-fields-container"><input type="hidden" name="_wpcf7"
-                                value="1832" /><input type="hidden" name="_wpcf7_version" value="6.1.3" /><input
-                                type="hidden" name="_wpcf7_locale" value="en_US" /><input type="hidden"
-                                name="_wpcf7_unit_tag" value="wpcf7-f1832-o1" /><input type="hidden"
-                                name="_wpcf7_container_post" value="0" /><input type="hidden"
-                                name="_wpcf7_posted_data_hash" value="" /><input type="hidden"
-                                name="_wpcf7_recaptcha_response" value="" />
-                        </fieldset>
-                        <div class="form-container">
-                            <div class="form-row">
-                                <p><label for="your-name">Your Name</label><br />
-                                    <span class="wpcf7-form-control-wrap" data-name="your-name"><input size="40"
-                                            maxlength="400"
-                                            class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-field"
-                                            id="your-name" aria-required="true" aria-invalid="false"
-                                            placeholder="Enter your name" value="" type="text"
-                                            name="your-name" /></span>
-                                </p>
-                            </div>
-                            <div class="form-row">
-                                <p><label for="your-email">Your Email</label><br />
-                                    <span class="wpcf7-form-control-wrap" data-name="your-email"><input size="40"
-                                            maxlength="400"
-                                            class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email form-field"
-                                            id="your-email" aria-required="true" aria-invalid="false"
-                                            placeholder="Enter your email" value="" type="email"
-                                            name="your-email" /></span>
-                                </p>
-                            </div>
-                            <div class="form-row">
-                                <p><label for="tel-784">Your Phone Number</label><br />
-                                    <span class="wpcf7-form-control-wrap" data-name="tel-784"><input size="40"
-                                            maxlength="400"
-                                            class="wpcf7-form-control wpcf7-tel wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-tel form-field"
-                                            id="tel-784" aria-required="true" aria-invalid="false"
-                                            placeholder="Enter your phone number" value="" type="tel"
-                                            name="tel-784" /></span>
-                                </p>
-                            </div>
-                            <div class="form-row">
-                                <p><label for="your-message">Your Message</label><br />
-                                    <span class="wpcf7-form-control-wrap" data-name="your-message"><textarea cols="40"
-                                            rows="10" maxlength="2000"
-                                            class="wpcf7-form-control wpcf7-textarea form-field" id="your-message"
-                                            aria-invalid="false" placeholder="Write your message here..."
-                                            name="your-message"></textarea></span>
-                                </p>
-                            </div>
-                            <div class="form-submit-row">
-                                <p><input class="wpcf7-form-control wpcf7-submit has-spinner submit-button"
-                                        type="submit" value="Send Message" />
-                                </p>
-                            </div>
-                        </div><input type='hidden' class='wpcf7-pum'
-                            value='{"closepopup":false,"closedelay":0,"openpopup":false,"openpopup_id":1818}' />
-                        <div class="wpcf7-response-output" aria-hidden="true"></div>
-                    </form>
-                </div>
-
-
-
-
-                <p class=""></p>
-            </div>
-
-
-            <button type="button" class="pum-close popmake-close" aria-label="Close">
-                &times; </button>
-
-        </div>
-
-    </div>
+    
     <script>
         const lazyloadRunObserver = () => {
             const lazyloadBackgrounds = document.querySelectorAll(`.e-con.e-parent:not(.e-lazyloaded)`);
@@ -6074,31 +6163,31 @@ flexibility(document.documentElement);
         });
     </script>
     <link rel='stylesheet' id='widget-social-icons-css'
-        href='https://www.duauthorizedpartner.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.33.1'
+        href='/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.33.1'
         media='all' />
     <link rel='stylesheet' id='e-apple-webkit-css'
-        href='https://www.duauthorizedpartner.com/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=3.33.1'
+        href='/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=3.33.1'
         media='all' />
     <link rel='stylesheet' id='e-animation-grow-css'
-        href='https://www.duauthorizedpartner.com/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-grow.min.css?ver=3.33.1'
+        href='/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-grow.min.css?ver=3.33.1'
         media='all' />
     <link rel='stylesheet' id='widget-image-css'
-        href='https://www.duauthorizedpartner.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.33.1'
+        href='/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.33.1'
         media='all' />
     <link rel='stylesheet' id='widget-icon-list-css'
-        href='https://www.duauthorizedpartner.com/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.33.1'
+        href='/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.33.1'
         media='all' />
     <link rel='stylesheet' id='widget-divider-css'
-        href='https://www.duauthorizedpartner.com/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.33.1'
+        href='/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.33.1'
         media='all' />
-    <script src="../wp-includes/js/dist/hooks.min.js" id="wp-hooks-js"></script>
-    <script src="../wp-includes/js/dist/i18n.min.js" id="wp-i18n-js"></script>
+    <script src="/wp-includes/js/dist/hooks.min.js" id="wp-hooks-js"></script>
+    <script src="/wp-includes/js/dist/i18n.min.js" id="wp-i18n-js"></script>
     <script id="wp-i18n-js-after">
         wp.i18n.setLocaleData({
             'text direction\u0004ltr': ['ltr']
         });
     </script>
-    <script src="../wp-content/plugins/contact-form-7/includes/swv/js/index.js" id="swv-js"></script>
+    <script src="/wp-content/plugins/contact-form-7/includes/swv/js/index.js" id="swv-js"></script>
     <script id="contact-form-7-js-before">
         var wpcf7 = {
             "api": {
@@ -6113,12 +6202,12 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script src="../wp-content/plugins/contact-form-7/includes/js/index.js" id="contact-form-7-js"></script>
-    <script src="../wp-content/plugins/elementor/assets/js/webpack.runtime.min.js"
+    <script src="/wp-content/plugins/contact-form-7/includes/js/index.js" id="contact-form-7-js"></script>
+    <script src="/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js"
         id="elementor-webpack-runtime-js"></script>
-    <script src="../wp-content/plugins/elementor/assets/js/frontend-modules.min.js"
+    <script src="/wp-content/plugins/elementor/assets/js/frontend-modules.min.js"
         id="elementor-frontend-modules-js"></script>
-    <script src="../wp-includes/js/jquery/ui/core.min.js" id="jquery-ui-core-js"></script>
+    <script src="/wp-includes/js/jquery/ui/core.min.js" id="jquery-ui-core-js"></script>
     <script id="elementor-frontend-js-before">
         var elementorFrontendConfig = {
             "environmentMode": {
@@ -6246,7 +6335,7 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script src="../wp-content/plugins/elementor/assets/js/frontend.min.js" id="elementor-frontend-js"></script>
+    <script src="/wp-content/plugins/elementor/assets/js/frontend.min.js" id="elementor-frontend-js"></script>
     <script id="nfd-performance-lazy-loader-js-before">
         window.nfdPerformance = window.nfdPerformance || {};
         window.nfdPerformance.imageOptimization = window.nfdPerformance.imageOptimization || {};
@@ -6256,7 +6345,7 @@ flexibility(document.documentElement);
         };
     </script>
     <script
-        src="../wp-content/plugins/bluehost-wordpress-plugin/vendor/newfold-labs/wp-module-performance/build/assets/image-lazy-loader.min.js"
+        src="/wp-content/plugins/bluehost-wordpress-plugin/vendor/newfold-labs/wp-module-performance/build/assets/image-lazy-loader.min.js"
         id="nfd-performance-lazy-loader-js"></script>
     <script id="linkprefetcher-js-before">
         window.LP_CONFIG = {
@@ -6271,7 +6360,7 @@ flexibility(document.documentElement);
         }
     </script>
     <script
-        src="../wp-content/plugins/bluehost-wordpress-plugin/vendor/newfold-labs/wp-module-performance/build/assets/link-prefetch.min.js"
+        src="/wp-content/plugins/bluehost-wordpress-plugin/vendor/newfold-labs/wp-module-performance/build/assets/link-prefetch.min.js"
         id="linkprefetcher-js" defer></script>
     <script id="sinatra-js-js-extra">
         var sinatra_vars = {
@@ -6288,7 +6377,7 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script src="../wp-content/themes/sinatra/assets/js/sinatra.min.js" id="sinatra-js-js"></script>
+    <script src="/wp-content/themes/sinatra/assets/js/sinatra.min.js" id="sinatra-js-js"></script>
     <script id="popup-maker-site-js-extra">
         var pum_vars = {
             "version": "1.21.5",
@@ -6367,11 +6456,10 @@ flexibility(document.documentElement);
         };
     </script>
     <script
-        src="//www.duauthorizedpartner.com/wp-content/uploads/pum/pum-site-scripts.js?defer&amp;generated=1761730511&amp;ver=1.21.5"
+        src="/wp-content/uploads/pum/pum-site-scripts.js?defer&amp;generated=1761730511&amp;ver=1.21.5"
         id="popup-maker-site-js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lf8_PYrAAAAANt2ZQxxmtLm01mFx7wYA0CiKskp&amp;ver=3.0"
-        id="google-recaptcha-js"></script>
-    <script src="../wp-includes/js/dist/vendor/wp-polyfill.min.js" id="wp-polyfill-js"></script>
+   
+    <script src="/wp-includes/js/dist/vendor/wp-polyfill.min.js" id="wp-polyfill-js"></script>
     <script id="wpcf7-recaptcha-js-before">
         var wpcf7_recaptcha = {
             "sitekey": "6Lf8_PYrAAAAANt2ZQxxmtLm01mFx7wYA0CiKskp",
@@ -6381,10 +6469,10 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script src="../wp-content/plugins/contact-form-7/modules/recaptcha/index.js" id="wpcf7-recaptcha-js"></script>
-    <script src="../wp-content/plugins/header-footer-elementor/inc/js/frontend.js" id="hfe-frontend-js-js"></script>
-    <script defer src="../wp-content/plugins/mailchimp-for-wp/assets/js/forms.js" id="mc4wp-forms-api-js"></script>
-    <script src="../wp-content/plugins/custom-css-for-elementor/assets/js/purify.min.js" id="purify-js"></script>
+    <script src="/wp-content/plugins/contact-form-7/modules/recaptcha/index.js" id="wpcf7-recaptcha-js"></script>
+    <script src="/wp-content/plugins/header-footer-elementor/inc/js/frontend.js" id="hfe-frontend-js-js"></script>
+    <script defer src="/wp-content/plugins/mailchimp-for-wp/assets/js/forms.js" id="mc4wp-forms-api-js"></script>
+    <script src="/wp-content/plugins/custom-css-for-elementor/assets/js/purify.min.js" id="purify-js"></script>
     <script id="editor-css-script-js-extra">
         var modelData = {
             "postID": "234",
@@ -6394,7 +6482,7 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script src="../wp-content/plugins/custom-css-for-elementor/assets/js/editor-css-script.js"
+    <script src="/wp-content/plugins/custom-css-for-elementor/assets/js/editor-css-script.js"
         id="editor-css-script-js"></script>
     <script>
         ! function () {
@@ -6443,34 +6531,210 @@ flexibility(document.documentElement);
             }
         })();
     </script>
-    <!-- Promotional popup moved to a standalone page: /popup.html -->
+    <!-- Promotional Popup -->
+    <div id="promo-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <button id="close-popup" class="close-btn">&times;</button>
+            <div class="popup-header">
+                <h2>Exclusive Corporate Offer!</h2>
+                <p>Get the best internet plans for your business.</p>
+            </div>
+            <div class="popup-body">
+                <p>Sign up now to get a free consultation and exclusive discounts.</p>
+                <form id="popupContactForm">
+                    <input type="text" id="Name" name="name" placeholder="Your Name" required>
+                    <input type="tel" id="Phone" name="phone" placeholder="Phone Number" required>
+                    <button type="submit" class="submit-btn">Get Offer</button>
+                </form>
+                <p class="popup-response" id="popupResponse" style="margin-top: 10px; font-size: 0.9em;"></p>
+            </div>
+        </div>
+    </div>
     <script>
-        (function(){
-            function openPopupIframe(){
-                if(document.getElementById('site-popup-iframe-overlay')) return;
-                var overlay = document.createElement('div');
-                overlay.id = 'site-popup-iframe-overlay';
-                overlay.style.position = 'fixed'; overlay.style.left = 0; overlay.style.top = 0; overlay.style.width = '100%'; overlay.style.height = '100%'; overlay.style.background = 'rgba(0,0,0,0.6)'; overlay.style.display = 'flex'; overlay.style.alignItems = 'center'; overlay.style.justifyContent = 'center'; overlay.style.zIndex = 999999;
-                var iframe = document.createElement('iframe'); iframe.src = '/popup.html'; iframe.style.width = '420px'; iframe.style.maxWidth = '92%'; iframe.style.height = 'auto'; iframe.style.border = '0'; iframe.style.borderRadius = '12px'; iframe.style.boxShadow = '0 10px 30px rgba(0,0,0,.25)';
-                overlay.appendChild(iframe); document.body.appendChild(overlay);
-                overlay.addEventListener('click', function(e){ if(e.target === overlay){ document.body.removeChild(overlay); } });
-                window.addEventListener('message', function(e){
-                    if(!e.data) return;
-                    if(e.data.type === 'popup-close'){
-                        if(document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay'));
-                    }
-                    if(e.data.type === 'popup-submitted'){
-                        setTimeout(function(){ if(document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay')); },900);
-                    }
-                    if(e.data.type === 'popup-height'){
-                        try{
-                            if(iframe && e.data.height){ iframe.style.height = (parseInt(e.data.height,10) + 24) + 'px'; }
-                        }catch(err){/*ignore*/}
-                    }
-                }, {passive:true});
-            }
-            document.addEventListener('DOMContentLoaded', function(){ setTimeout(openPopupIframe,3000); });
-        })();
+        // Google Apps Script URL for form submission
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbztCBZc3VPXCtQsVQabC6OWnUV-xuGCshC7n8zAAegRsethwQRJmnHutiJXVslwcK0v/exec'; // Replace with your Apps Script Web App URL
+
+        document.getElementById('popupContactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const data = {
+                Name: document.getElementById('Name').value,
+                Phone: document.getElementById('Phone').value,
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            })
+                .then(response => response.text())
+                .then(result => {
+                    alert("Form submitted successfully!");
+                    document.getElementById('contact-form').reset();
+                })
+
+        });
+    </script>
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .popup-overlay.show {
+            opacity: 1;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .popup-overlay.show .popup-content {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #555;
+            line-height: 1;
+        }
+
+        .popup-header h2 {
+            color: #302b63;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .popup-body p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .popup-body input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background: #302b63;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #4a438a;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var popup = document.getElementById('promo-popup');
+                popup.style.display = 'flex';
+                // Trigger reflow to enable transition
+                popup.offsetHeight;
+                popup.classList.add('show');
+            }, 3000); // 3 seconds delay
+
+            document.getElementById('close-popup').addEventListener('click', function () {
+                var popup = document.getElementById('promo-popup');
+                popup.classList.remove('show');
+                setTimeout(function () {
+                    popup.style.display = 'none';
+                }, 300);
+            });
+
+            // Close on click outside
+            document.getElementById('promo-popup').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    this.classList.remove('show');
+                    setTimeout(function () {
+                        this.style.display = 'none';
+                    }.bind(this), 300);
+                }
+            });
+
+            // Form submission logic
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyusyH-p1A6aZS6PMDt5ofVIY4x12QyQf4dFZjlIx1AGHXatPnV3yZHKL8VHSHWtthC/exec';
+            const form = document.getElementById('popup-form');
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                const submitBtn = form.querySelector('.submit-btn');
+                const originalText = submitBtn.innerText;
+                submitBtn.innerText = 'Sending...';
+                submitBtn.disabled = true;
+
+                const data = {
+                    name: document.getElementById('popup-name').value,
+                    phone: document.getElementById('popup-phone').value,
+                    source: 'Corporate Popup'
+                };
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.text())
+                    .then(result => {
+                        document.getElementById('popup-response').innerText = "Thanks! We'll contact you soon.";
+                        document.getElementById('popup-response').style.color = "green";
+                        form.reset();
+                        submitBtn.innerText = originalText;
+                        submitBtn.disabled = false;
+                        setTimeout(() => {
+                            var popup = document.getElementById('promo-popup');
+                            popup.classList.remove('show');
+                            setTimeout(function () {
+                                popup.style.display = 'none';
+                            }, 300);
+                        }, 2000);
+                    })
+                    .catch(error => {
+                        document.getElementById('popup-response').innerText = "Error submitting form.";
+                        document.getElementById('popup-response').style.color = "red";
+                        submitBtn.innerText = originalText;
+                        submitBtn.disabled = false;
+                    });
+            });
+        });
     </script>
 
     <script>
@@ -6565,6 +6829,39 @@ flexibility(document.documentElement);
 
             console.log('✅ Side-drawer menu initialized');
         });
+    </script>
+</body>
+
+    <!-- Final defensive fix: ensure no horizontal scrolling appears -->
+    <style id="overflow-fix">
+        html, body, #page { overflow-x: hidden !important; max-width: 100vw !important; }
+        /* Prevent elements from escaping viewport by accidental large transforms */
+        * { box-sizing: border-box; }
+    </style>
+    <script>
+        // Apply inline style as a last-resort (scripts may toggle overflow later)
+        (function keepOverflowHidden(){
+            try {
+                document.documentElement.style.overflowX = 'hidden';
+                document.body.style.overflowX = 'hidden';
+            } catch(e){}
+        })();
+        // Re-apply on resize / DOM changes
+        window.addEventListener('resize', function(){
+            document.documentElement.style.overflowX = 'hidden';
+            document.body.style.overflowX = 'hidden';
+        });
+        // Observe mutations that might add inline overflow styles and clear them
+        try {
+            var obs = new MutationObserver(function(m){
+                m.forEach(function(){
+                    if (document.documentElement.style.overflowX !== 'hidden') document.documentElement.style.overflowX = 'hidden';
+                    if (document.body.style.overflowX !== 'hidden') document.body.style.overflowX = 'hidden';
+                });
+            });
+            obs.observe(document.documentElement, { attributes: true, attributeFilter: ['style'], subtree: false });
+            obs.observe(document.body, { attributes: true, attributeFilter: ['style'], subtree: false });
+        } catch(e){}
     </script>
 
 </body>
