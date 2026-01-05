@@ -4103,67 +4103,125 @@ flexibility(document.documentElement);
                         data-id="d17c2fc" data-element_type="container">
                         <div class="elementor-element elementor-element-18fde68 elementor-widget elementor-widget-text-editor"
                             data-id="18fde68" data-element_type="widget" data-widget_type="text-editor.default">
-                            <div class="elementor-widget-container">
-                                <!-- Contact form (desktop) -->
-                                <form id="contact-form" class="du-contact-form">
+                                                        <div class="contact-form-container">
+                                                                
+                                                                <form id="contact-form">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Name" required>
+                        
+                        <input type="text" id="name" placeholder="Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email" required>
+                        <input type="email" id="email" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Message" required></textarea>
+                        <textarea id="message" placeholder="Message" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="submit" class="btn-submit">Submit</button>
                     </form>
                     <p id="response"></p>
-                               
-                            </div>
+                                                        </div>
+                                                        <style>
+                                                        .contact-form-container {
+                                                            max-width: 600px;
+                                                            margin: 40px auto;
+                                                            background: #f0f4ff; /* Changed background color */
+                                                            border-radius: 18px;
+                                                            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
+                                                            padding: 40px 32px 32px 32px;
+                                                        }
+
+                                                        .contact-form-container h1,
+                                                        .contact-form-container h2 {
+                                                            text-align: center;
+                                                            color: #23235b;
+                                                            margin-bottom: 12px;
+                                                        }
+
+                                                        .contact-form {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            gap: 22px;
+                                                        }
+
+                                                        .contact-form input,
+                                                        .contact-form textarea {
+                                                            padding: 14px 16px;
+                                                            border: 1.5px solid #e0e0e0;
+                                                            border-radius: 8px;
+                                                            font-size: 1.08rem;
+                                                            background: #f9f9fb;
+                                                            transition: border 0.2s;
+                                                            resize: none;
+                                                        }
+
+                                                        .contact-form input:focus,
+                                                        .contact-form textarea:focus {
+                                                            border: 1.5px solid #23235b;
+                                                            outline: none;
+                                                            background: #fff;
+                                                        }
+
+                                                        .contact-form textarea {
+                                                            min-height: 120px;
+                                                            max-height: 240px;
+                                                        }
+
+                                                        .contact-form button[type="submit"] {
+                                                            background: linear-gradient(90deg, #23235b 60%, #4e54c8 100%);
+                                                            color: #fff;
+                                                            border: none;
+                                                            border-radius: 8px;
+                                                            padding: 14px 0;
+                                                            font-size: 1.1rem;
+                                                            font-weight: 600;
+                                                            cursor: pointer;
+                                                            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+                                                            transition: background 0.2s, transform 0.1s;
+                                                            margin-top: 10px;
+                                                            display: block;
+                                                            margin-left: auto;
+                                                            margin-right: auto;
+                                                        }
+
+                                                        .contact-form button[type="submit"]:hover {
+                                                            background: linear-gradient(90deg, #4e54c8 60%, #23235b 100%);
+                                                            transform: translateY(-2px) scale(1.02);
+                                                        }
+                                                        </style>
 
                         </div>
-                        <div class="du-contact-wrap"
-                            style="width:100%;margin:0;padding:0 18px;box-sizing:border-box;display:flex;justify-content:center;">
-
-                        </div>
+                        <!-- Removed old du-contact-wrap -->
                     </div>
 <script>
         // Post the form as FormData (Apps Script doPost handles form data better).
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyFnjT1Ml2PPCy3K-PoY-kyXnovM4H93jiRfXZq8WdrR3NG7a0ZL2aZlwPyCzHfhPCH/exec';  
 
-        if (typeof window._du_scriptURL === 'undefined') {
-            window._du_scriptURL = 'https://script.google.com/macros/s/AKfycbyilf4gg_awI-fm31dMLa4WxxIMV2DTh_4jLZ_wGNZocBCt74cx13eeZ0MMRGbbDpaP/exec'; // Apps Script Web App URL
-        }
-        (function () {
-            const form = document.getElementById('contact-form');
-            if (!form) return;
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value
+      };
 
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const fd = new FormData(form);
-
-                fetch(window._du_scriptURL, {
-                    method: 'POST',
-                    body: fd,
-                    mode: 'cors'
-                })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById('response').textContent = 'Form submitted successfully.';
-                        form.reset();
-                    } else {
-                        return response.text().then(t => { throw new Error(t || 'Submission failed'); });
-                    }
-                })
-                .catch(err => {
-                    document.getElementById('response').textContent = 'Submission failed (see console).';
-                    console.error('Form submit error:', err);
-                });
-            });
-        })();
+      fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      .then(response => response.text())
+        .then(result => {
+        alert("Form submitted successfully!");
+        document.getElementById('contact-form').reset();
+        })
+        .catch(error => {
+        alert("Error submitting form.");
+        console.error('Error!', error.message);
+        });
+        });
 
     </script>
                 </div>
