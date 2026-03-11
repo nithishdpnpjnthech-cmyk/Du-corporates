@@ -6543,7 +6543,6 @@ flexibility(document.documentElement);
     <!-- Promotional Popup -->
     <div id="promo-popup" class="popup-overlay" style="display: none;">
         <div class="popup-content">
-            <button id="close-popup" class="close-btn">&times;</button>
             <div class="popup-header">
                 <h2>Exclusive Corporate Offer!</h2>
                 <p>Get the best internet plans for your business.</p>
@@ -6556,39 +6555,12 @@ flexibility(document.documentElement);
                     <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
                     <textarea id="message" name="message" placeholder="Your Message" rows="2" required
                         style="width: 100%; padding: 10px; margin: 4px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 15px; transition: border-color 0.3s; height: 60px; resize: none;"></textarea>
-                    <button type="submit" class="submit-btn">Get Offer</button>
+                    <button type="submit" class="submit-btn" id="submit-btn">Get Offer</button>
                 </form>
                 <p class="popup-response" id="popupResponse" style="margin-top: 10px; font-size: 0.9em;"></p>
             </div>
         </div>
     </div>
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyFnjT1Ml2PPCy3K-PoY-kyXnovM4H93jiRfXZq8WdrR3NG7a0ZL2aZlwPyCzHfhPCH/exec';
-
-        document.getElementById('contact-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const data = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                message: document.getElementById('message').value
-            };
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(data)
-            })
-                .then(response => response.text())
-                .then(result => {
-                    alert("Form submitted successfully!");
-                    document.getElementById('contact-form').reset();
-                })
-                .catch(error => {
-                    alert("Error submitting form.");
-                    console.error('Error!', error.message);
-                });
-        });
-    </script>
     <style>
         .popup-overlay {
             position: fixed;
@@ -6625,18 +6597,6 @@ flexibility(document.documentElement);
 
         .popup-overlay.show .popup-content {
             transform: translateY(0);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: #555;
-            line-height: 1;
         }
 
         .popup-header h2 {
@@ -6681,49 +6641,28 @@ flexibility(document.documentElement);
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                var popup = document.getElementById('promo-popup');
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyFnjT1Ml2PPCy3K-PoY-kyXnovM4H93jiRfXZq8WdrR3NG7a0ZL2aZlwPyCzHfhPCH/exec';
+
+            // Show popup immediately
+            const popup = document.getElementById('promo-popup');
+            if (popup) {
                 popup.style.display = 'flex';
-                // Trigger reflow to enable transition
-                popup.offsetHeight;
+                popup.offsetHeight; // force reflow
                 popup.classList.add('show');
-            }, 3000); // 3 seconds delay
+            }
 
-            document.getElementById('close-popup').addEventListener('click', function () {
-                var popup = document.getElementById('promo-popup');
-                popup.classList.remove('show');
-                setTimeout(function () {
-                    popup.style.display = 'none';
-                }, 300);
-            });
-
-            // Close on click outside
-            document.getElementById('promo-popup').addEventListener('click', function (e) {
-                if (e.target === this) {
-                    this.classList.remove('show');
-                    setTimeout(function () {
-                        this.style.display = 'none';
-                    }.bind(this), 300);
-                }
-            });
-
-            // Form submission logic
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyusyH-p1A6aZS6PMDt5ofVIY4x12QyQf4dFZjlIx1AGHXatPnV3yZHKL8VHSHWtthC/exec';
-            const form = document.getElementById('popup-form');
-
-            form.addEventListener('submit', e => {
+            document.getElementById('contact-form').addEventListener('submit', function (e) {
                 e.preventDefault();
-                const submitBtn = form.querySelector('.submit-btn');
+                const submitBtn = document.getElementById('submit-btn');
                 const originalText = submitBtn.innerText;
                 submitBtn.innerText = 'Sending...';
                 submitBtn.disabled = true;
 
                 const data = {
-                    name: document.getElementById('popup-name').value,
-                    email: document.getElementById('popup-email') ? document.getElementById('popup-email').value : '',
-                    phone: document.getElementById('popup-phone').value,
-                    message: document.getElementById('popup-message') ? document.getElementById('popup-message').value : '',
-                    source: 'Corporate Popup'
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    message: document.getElementById('message').value
                 };
 
                 fetch(scriptURL, {
@@ -6732,22 +6671,17 @@ flexibility(document.documentElement);
                 })
                     .then(response => response.text())
                     .then(result => {
-                        document.getElementById('popup-response').innerText = "Thanks! We'll contact you soon.";
-                        document.getElementById('popup-response').style.color = "green";
-                        form.reset();
+                        alert("Form submitted successfully!");
+                        document.getElementById('contact-form').reset();
                         submitBtn.innerText = originalText;
                         submitBtn.disabled = false;
-                        setTimeout(() => {
-                            var popup = document.getElementById('promo-popup');
-                            popup.classList.remove('show');
-                            setTimeout(function () {
-                                popup.style.display = 'none';
-                            }, 300);
-                        }, 2000);
+                        // Close popup only after successful submission
+                        popup.classList.remove('show');
+                        setTimeout(() => { popup.style.display = 'none'; }, 300);
                     })
                     .catch(error => {
-                        document.getElementById('popup-response').innerText = "Error submitting form.";
-                        document.getElementById('popup-response').style.color = "red";
+                        alert("Error submitting form.");
+                        console.error('Error!', error.message);
                         submitBtn.innerText = originalText;
                         submitBtn.disabled = false;
                     });
