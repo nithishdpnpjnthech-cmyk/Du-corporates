@@ -85,32 +85,149 @@
 
     <!-- Defensive overflow fix to remove horizontal scrollbar -->
     <style>
-        html, body, #page { overflow-x: hidden !important; max-width: 100vw !important; }
-        img, .elementor, .elementor-widget { max-width: 100% !important; }
-        * { box-sizing: border-box; }
+        html,
+        body,
+        #page {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+        }
+
+        img,
+        .elementor,
+        .elementor-widget {
+            max-width: 100% !important;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
     </style>
     <!-- Mobile side-drawer menu styles (copied from index.html) -->
     <style>
         @media (max-width: 1024px) {
-            nav.hfe-nav-menu__layout-horizontal { display: none !important; }
-            .mobile-menu-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index:9998; opacity:0; transition: opacity 0.3s ease; }
-            .mobile-menu-overlay.active { display:block; opacity:1; }
-            .mobile-side-menu { position: fixed; top:0; right:-100%; width:85%; max-width:400px; height:100%; background:#fff; z-index:9999; transition: right 0.3s ease; overflow-y:auto; box-shadow:-2px 0 10px rgba(0,0,0,0.1); }
-            .mobile-side-menu.active { right:0; }
-            .mobile-menu-logo { padding:20px; border-bottom:1px solid #e5e5e5; }
-            .mobile-menu-logo img { width:50px; height:auto; }
-            .mobile-menu-close { position:absolute; top:20px; right:20px; width:40px; height:40px; background:transparent; border:2px solid #333; border-radius:4px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:300; color:#333; z-index:10000; }
-            .mobile-menu-close:hover { background:#f0f0f0; }
-            .mobile-menu-items { padding:0; }
-            .mobile-menu-items ul { list-style:none; margin:0; padding:0; }
-            .mobile-menu-items ul li { border-bottom:1px solid #e5e5e5; }
-            .mobile-menu-items ul li a { display:block; padding:18px 20px; color:#000; text-decoration:none; font-size:15px; font-weight:400; }
-            .mobile-menu-items ul li a:hover { background:#f8f8f8; }
-            .hfe-nav-menu__toggle { display:block !important; cursor:pointer !important; z-index:10000 !important; }
+            nav.hfe-nav-menu__layout-horizontal {
+                display: none !important;
+            }
+
+            .mobile-menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 9998;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .mobile-menu-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+
+            .mobile-side-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                max-width: 400px;
+                height: 100%;
+                background: #fff;
+                z-index: 9999;
+                transition: right 0.3s ease;
+                overflow-y: auto;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-side-menu.active {
+                right: 0;
+            }
+
+            .mobile-menu-logo {
+                padding: 20px;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .mobile-menu-logo img {
+                width: 50px;
+                height: auto;
+            }
+
+            .mobile-menu-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                background: transparent;
+                border: 2px solid #333;
+                border-radius: 4px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: 300;
+                color: #333;
+                z-index: 10000;
+            }
+
+            .mobile-menu-close:hover {
+                background: #f0f0f0;
+            }
+
+            .mobile-menu-items {
+                padding: 0;
+            }
+
+            .mobile-menu-items ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .mobile-menu-items ul li {
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .mobile-menu-items ul li a {
+                display: block;
+                padding: 18px 20px;
+                color: #000;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: 400;
+            }
+
+            .mobile-menu-items ul li a:hover {
+                background: #f8f8f8;
+            }
+
+            .hfe-nav-menu__toggle {
+                display: block !important;
+                cursor: pointer !important;
+                z-index: 10000 !important;
+            }
         }
+
         @media (min-width: 1025px) {
-            .elementor-hidden-desktop, .elementor-hidden-tablet, .nfd-hide-desktop { display:none !important; visibility:hidden !important; height:0 !important; overflow:hidden !important; }
-            .hfe-nav-menu__toggle, .mobile-side-menu, .mobile-menu-overlay { display:none !important; }
+
+            .elementor-hidden-desktop,
+            .elementor-hidden-tablet,
+            .nfd-hide-desktop {
+                display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                overflow: hidden !important;
+            }
+
+            .hfe-nav-menu__toggle,
+            .mobile-side-menu,
+            .mobile-menu-overlay {
+                display: none !important;
+            }
         }
     </style>
     <!-- This site is optimized with the Yoast SEO Premium plugin v24.9 (Yoast SEO v26.4) - https://yoast.com/wordpress/plugins/seo/ -->
@@ -3622,10 +3739,8 @@ flexibility(document.documentElement);
 </script>
 <![endif]-->
     <link rel="https://api.w.org/" href="/wp-json/" />
-    <link rel="alternate" title="JSON" type="application/json"
-        href="/wp-json/wp/v2/pages/351" />
-    <link rel="EditURI" type="application/rsd+xml" title="RSD"
-        href="https://business.duconnect.ae/xmlrpc.php?rsd" />
+    <link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/pages/351" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://business.duconnect.ae/xmlrpc.php?rsd" />
     <meta name="generator" content="WordPress 6.8.3" />
     <link rel='shortlink' href='/?p=351' />
     <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"
@@ -3952,8 +4067,7 @@ flexibility(document.documentElement);
                                                 </li>
                                                 <li id="menu-item-387"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu">
-                                                    <a href="/index.html"
-                                                        class="hfe-menu-item">Corporate Packages</a>
+                                                    <a href="/index.html" class="hfe-menu-item">Corporate Packages</a>
                                                 </li>
 
                                                 <li id="menu-item-394"
@@ -3968,11 +4082,7 @@ flexibility(document.documentElement);
                                                     class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu">
                                                     <a href="/about.html" class="hfe-menu-item">About Us</a>
                                                 </li>
-                                                <li id="menu-item-392"
-                                                    class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu">
-                                                    <a href="contact-us.html" class="hfe-menu-item">Contact
-                                                        Us</a>
-                                                </li>
+
                                             </ul>
                                         </nav>
                                     </div>
@@ -4589,7 +4699,8 @@ flexibility(document.documentElement);
                                 <div class="elementor-element elementor-element-38c7ced elementor-widget elementor-widget-heading"
                                     data-id="38c7ced" data-element_type="widget" data-widget_type="heading.default">
                                     <div class="elementor-widget-container">
-                                        <h5 class="elementor-heading-title elementor-size-default"><a href="/index.html">Home</a>
+                                        <h5 class="elementor-heading-title elementor-size-default"><a
+                                                href="/index.html">Home</a>
                                         </h5>
                                     </div>
                                 </div>
@@ -4636,7 +4747,8 @@ flexibility(document.documentElement);
                                 <div class="elementor-element elementor-element-138f33c elementor-widget elementor-widget-heading"
                                     data-id="138f33c" data-element_type="widget" data-widget_type="heading.default">
                                     <div class="elementor-widget-container">
-                                        <h5 class="elementor-heading-title elementor-size-default"><a href="/index.html">Home
+                                        <h5 class="elementor-heading-title elementor-size-default"><a
+                                                href="/index.html">Home
                                                 Package</a></h5>
                                     </div>
                                 </div>
@@ -4921,35 +5033,26 @@ flexibility(document.documentElement);
         });
     </script>
     <link rel='stylesheet' id='widget-social-icons-css'
-        href='/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.33.1' media='all' />
     <link rel='stylesheet' id='e-apple-webkit-css'
-        href='/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=3.33.1' media='all' />
     <link rel='stylesheet' id='e-animation-grow-css'
         href='/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-grow.min.css?ver=3.33.1'
         media='all' />
     <link rel='stylesheet' id='widget-image-css'
-        href='/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.33.1' media='all' />
     <link rel='stylesheet' id='widget-icon-list-css'
-        href='/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.33.1' media='all' />
     <link rel='stylesheet' id='widget-divider-css'
-        href='/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.33.1'
-        media='all' />
-    <script src="/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6"
-        id="wp-hooks-js"></script>
-    <script src="/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6"
-        id="wp-i18n-js"></script>
+        href='/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.33.1' media='all' />
+    <script src="/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6" id="wp-hooks-js"></script>
+    <script src="/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6" id="wp-i18n-js"></script>
     <script id="wp-i18n-js-after">
         wp.i18n.setLocaleData({
             'text direction\u0004ltr': ['ltr']
         });
     </script>
-    <script
-        src="/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.3"
-        id="swv-js"></script>
+    <script src="/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.3" id="swv-js"></script>
     <script id="contact-form-7-js-before">
         var wpcf7 = {
             "api": {
@@ -4964,16 +5067,12 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script src="/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.3"
-        id="contact-form-7-js"></script>
-    <script
-        src="/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.33.1"
+    <script src="/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.3" id="contact-form-7-js"></script>
+    <script src="/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.33.1"
         id="elementor-webpack-runtime-js"></script>
-    <script
-        src="/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.33.1"
+    <script src="/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.33.1"
         id="elementor-frontend-modules-js"></script>
-    <script src="/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3"
-        id="jquery-ui-core-js"></script>
+    <script src="/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
     <script id="elementor-frontend-js-before">
         var elementorFrontendConfig = {
             "environmentMode": {
@@ -5144,8 +5243,7 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script src="/wp-content/themes/sinatra/assets/js/sinatra.min.js?ver=1.3"
-        id="sinatra-js-js"></script>
+    <script src="/wp-content/themes/sinatra/assets/js/sinatra.min.js?ver=1.3" id="sinatra-js-js"></script>
     <script id="popup-maker-site-js-extra">
         var pum_vars = {
             "version": "1.21.5",
@@ -5223,13 +5321,11 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script
-        src="/wp-content/uploads/pum/pum-site-scripts.js?defer&amp;generated=1761730511&amp;ver=1.21.5"
+    <script src="/wp-content/uploads/pum/pum-site-scripts.js?defer&amp;generated=1761730511&amp;ver=1.21.5"
         id="popup-maker-site-js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=6Lf8_PYrAAAAANt2ZQxxmtLm01mFx7wYA0CiKskp&amp;ver=3.0"
         id="google-recaptcha-js"></script>
-    <script src="/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0"
-        id="wp-polyfill-js"></script>
+    <script src="/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0" id="wp-polyfill-js"></script>
     <script id="wpcf7-recaptcha-js-before">
         var wpcf7_recaptcha = {
             "sitekey": "6Lf8_PYrAAAAANt2ZQxxmtLm01mFx7wYA0CiKskp",
@@ -5239,17 +5335,13 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script
-        src="/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=6.1.3"
+    <script src="/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=6.1.3"
         id="wpcf7-recaptcha-js"></script>
-    <script
-        src="/wp-content/plugins/header-footer-elementor/inc/js/frontend.js?ver=2.7.0"
+    <script src="/wp-content/plugins/header-footer-elementor/inc/js/frontend.js?ver=2.7.0"
         id="hfe-frontend-js-js"></script>
-    <script defer
-        src="/wp-content/plugins/mailchimp-for-wp/assets/js/forms.js?ver=4.10.8"
+    <script defer src="/wp-content/plugins/mailchimp-for-wp/assets/js/forms.js?ver=4.10.8"
         id="mc4wp-forms-api-js"></script>
-    <script
-        src="/wp-content/plugins/custom-css-for-elementor/assets/js/purify.min.js?ver=3.0.6"
+    <script src="/wp-content/plugins/custom-css-for-elementor/assets/js/purify.min.js?ver=3.0.6"
         id="purify-js"></script>
     <script id="editor-css-script-js-extra">
         var modelData = {
@@ -5260,8 +5352,7 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script
-        src="/wp-content/plugins/custom-css-for-elementor/assets/js/editor-css-script.js?ver=2.1.0"
+    <script src="/wp-content/plugins/custom-css-for-elementor/assets/js/editor-css-script.js?ver=2.1.0"
         id="editor-css-script-js"></script>
     <script>
         ! function () {
@@ -5310,54 +5401,54 @@ flexibility(document.documentElement);
             }
         })();
     </script>
-        <!-- Side-drawer mobile menu script (copied from index.html) -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Create overlay element
-                const overlay = document.createElement('div');
-                overlay.className = 'mobile-menu-overlay';
-                document.body.appendChild(overlay);
+    <!-- Side-drawer mobile menu script (copied from index.html) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create overlay element
+            const overlay = document.createElement('div');
+            overlay.className = 'mobile-menu-overlay';
+            document.body.appendChild(overlay);
 
-                // Create side menu container
-                const sideMenu = document.createElement('div');
-                sideMenu.className = 'mobile-side-menu';
+            // Create side menu container
+            const sideMenu = document.createElement('div');
+            sideMenu.className = 'mobile-side-menu';
 
-                // Logo section
-                const logoSection = document.createElement('div');
-                logoSection.className = 'mobile-menu-logo';
-                const originalLogo = document.querySelector('.elementor-widget-theme-site-logo img, .site-logo img, img[alt*="logo"], img[alt*="Logo"]');
-                if (originalLogo) { logoSection.appendChild(originalLogo.cloneNode(true)); } else { logoSection.innerHTML = '<strong style="font-size:18px">Menu</strong>'; }
+            // Logo section
+            const logoSection = document.createElement('div');
+            logoSection.className = 'mobile-menu-logo';
+            const originalLogo = document.querySelector('.elementor-widget-theme-site-logo img, .site-logo img, img[alt*="logo"], img[alt*="Logo"]');
+            if (originalLogo) { logoSection.appendChild(originalLogo.cloneNode(true)); } else { logoSection.innerHTML = '<strong style="font-size:18px">Menu</strong>'; }
 
-                const closeBtn = document.createElement('div');
-                closeBtn.className = 'mobile-menu-close';
-                closeBtn.innerHTML = '✕';
-                closeBtn.setAttribute('aria-label', 'Close Menu');
+            const closeBtn = document.createElement('div');
+            closeBtn.className = 'mobile-menu-close';
+            closeBtn.innerHTML = '✕';
+            closeBtn.setAttribute('aria-label', 'Close Menu');
 
-                const menuItemsContainer = document.createElement('div');
-                menuItemsContainer.className = 'mobile-menu-items';
-                const originalMenu = document.querySelector('nav.hfe-nav-menu__layout-horizontal ul');
-                if (originalMenu) { menuItemsContainer.appendChild(originalMenu.cloneNode(true)); }
+            const menuItemsContainer = document.createElement('div');
+            menuItemsContainer.className = 'mobile-menu-items';
+            const originalMenu = document.querySelector('nav.hfe-nav-menu__layout-horizontal ul');
+            if (originalMenu) { menuItemsContainer.appendChild(originalMenu.cloneNode(true)); }
 
-                sideMenu.appendChild(closeBtn);
-                sideMenu.appendChild(logoSection);
-                sideMenu.appendChild(menuItemsContainer);
-                document.body.appendChild(sideMenu);
+            sideMenu.appendChild(closeBtn);
+            sideMenu.appendChild(logoSection);
+            sideMenu.appendChild(menuItemsContainer);
+            document.body.appendChild(sideMenu);
 
-                const toggleBtn = document.querySelector('.hfe-nav-menu__toggle');
-                function openMenu(){ overlay.classList.add('active'); sideMenu.classList.add('active'); document.body.style.overflow = 'hidden'; }
-                function closeMenu(){ overlay.classList.remove('active'); sideMenu.classList.remove('active'); document.body.style.overflow = ''; }
-                if (toggleBtn) { toggleBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); openMenu(); }); }
-                closeBtn.addEventListener('click', closeMenu);
-                overlay.addEventListener('click', closeMenu);
-                const menuLinks = sideMenu.querySelectorAll('a');
-                menuLinks.forEach(link => link.addEventListener('click', () => setTimeout(closeMenu, 200)));
-            });
-        </script>
+            const toggleBtn = document.querySelector('.hfe-nav-menu__toggle');
+            function openMenu() { overlay.classList.add('active'); sideMenu.classList.add('active'); document.body.style.overflow = 'hidden'; }
+            function closeMenu() { overlay.classList.remove('active'); sideMenu.classList.remove('active'); document.body.style.overflow = ''; }
+            if (toggleBtn) { toggleBtn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openMenu(); }); }
+            closeBtn.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
+            const menuLinks = sideMenu.querySelectorAll('a');
+            menuLinks.forEach(link => link.addEventListener('click', () => setTimeout(closeMenu, 200)));
+        });
+    </script>
     <!-- Promotional popup moved to a standalone page: /popup.html -->
     <script>
-        (function(){
-            function openPopupIframe(){
-                if(document.getElementById('site-popup-iframe-overlay')) return;
+        (function () {
+            function openPopupIframe() {
+                if (document.getElementById('site-popup-iframe-overlay')) return;
                 var overlay = document.createElement('div');
                 overlay.id = 'site-popup-iframe-overlay';
                 overlay.style.position = 'fixed';
@@ -5384,32 +5475,32 @@ flexibility(document.documentElement);
                 iframe.style.maxHeight = 'calc(100vh - 40px)';
                 overlay.appendChild(iframe);
                 document.body.appendChild(overlay);
-                overlay.addEventListener('click', function(e){ if(e.target === overlay){ document.body.removeChild(overlay); } });
-                window.addEventListener('message', function(e){
-                    if(!e.data) return;
-                    if(e.data.type === 'popup-close'){
-                        if(document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay'));
+                overlay.addEventListener('click', function (e) { if (e.target === overlay) { document.body.removeChild(overlay); } });
+                window.addEventListener('message', function (e) {
+                    if (!e.data) return;
+                    if (e.data.type === 'popup-close') {
+                        if (document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay'));
                     }
-                    if(e.data.type === 'popup-submitted'){
-                        setTimeout(function(){ if(document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay')); },900);
+                    if (e.data.type === 'popup-submitted') {
+                        setTimeout(function () { if (document.getElementById('site-popup-iframe-overlay')) document.body.removeChild(document.getElementById('site-popup-iframe-overlay')); }, 900);
                     }
-                    if(e.data.type === 'popup-height'){
-                        try{
-                            if(iframe && e.data.height){
+                    if (e.data.type === 'popup-height') {
+                        try {
+                            if (iframe && e.data.height) {
                                 var buffer = 24;
-                                var requested = parseInt(e.data.height,10) + buffer;
+                                var requested = parseInt(e.data.height, 10) + buffer;
                                 var maxAllowed = Math.max(window.innerHeight - 48, 200);
                                 var finalH = Math.min(requested, maxAllowed);
                                 iframe.style.height = finalH + 'px';
                                 iframe.style.maxHeight = (maxAllowed) + 'px';
                             }
-                        }catch(err){/*ignore*/}
+                        } catch (err) {/*ignore*/ }
                     }
-                }, {passive:true});
+                }, { passive: true });
             }
-            document.addEventListener('DOMContentLoaded', function(){ setTimeout(openPopupIframe,3000); });
+            document.addEventListener('DOMContentLoaded', function () { setTimeout(openPopupIframe, 3000); });
         })();
     </script>
-    </body>
+</body>
 
-    </html>
+</html>

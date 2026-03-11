@@ -132,72 +132,86 @@
                 cursor: pointer !important;
                 z-index: 10000 !important;
             }
-            }
+        }
 
-            /* Force-hide mobile-only elements on desktop and desktop-only on mobile
+        /* Force-hide mobile-only elements on desktop and desktop-only on mobile
                in case theme/plugin responsive classes are not applied correctly. */
-            @media (min-width: 1025px) {
-                .elementor-hidden-desktop,
-                .elementor-hidden-tablet,
-                .nfd-hide-desktop {
-                    display: none !important;
-                    visibility: hidden !important;
-                    height: 0 !important;
-                    overflow: hidden !important;
-                }
+        @media (min-width: 1025px) {
 
-                /* Hide mobile-specific UI on large screens (hamburger, side menu, overlays) */
-                .hfe-nav-menu__toggle,
-                .mobile-side-menu,
-                .mobile-menu-overlay {
-                    display: none !important;
-                }
+            .elementor-hidden-desktop,
+            .elementor-hidden-tablet,
+            .nfd-hide-desktop {
+                display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                overflow: hidden !important;
             }
 
-            @media (max-width: 1024px) {
-                /* Ensure items marked as mobile-hidden stay hidden on small screens */
-                .elementor-hidden-mobile,
-                .nfd-hide-mobile {
-                    display: none !important;
-                    visibility: hidden !important;
-                }
-
-                /* Keep the horizontal desktop menu hidden on mobile (defensive) */
-                nav.hfe-nav-menu__layout-horizontal {
-                    display: none !important;
-                }
+            /* Hide mobile-specific UI on large screens (hamburger, side menu, overlays) */
+            .hfe-nav-menu__toggle,
+            .mobile-side-menu,
+            .mobile-menu-overlay {
+                display: none !important;
             }
+        }
+
+        @media (max-width: 1024px) {
+
+            /* Ensure items marked as mobile-hidden stay hidden on small screens */
+            .elementor-hidden-mobile,
+            .nfd-hide-mobile {
+                display: none !important;
+                visibility: hidden !important;
+            }
+
+            /* Keep the horizontal desktop menu hidden on mobile (defensive) */
+            nav.hfe-nav-menu__layout-horizontal {
+                display: none !important;
+            }
+        }
     </style>
 
     <!-- Defensive overflow fixes to remove unexpected horizontal scrolling -->
     <style>
         /* Hide any page-level horizontal overflow (safe default) */
-        html, body {
+        html,
+        body {
             overflow-x: hidden !important;
             box-sizing: border-box;
         }
 
         /* Ensure main layout containers cannot exceed the viewport width */
-        #page, .elementor, .e-con-inner, .packages-container, header, .hfe-nav-menu {
+        #page,
+        .elementor,
+        .e-con-inner,
+        .packages-container,
+        header,
+        .hfe-nav-menu {
             max-width: 100% !important;
             overflow-x: hidden !important;
         }
 
         /* Prevent oversized images from creating scrollbars */
-        img, .elementor-widget img, .hfe-site-logo-img {
+        img,
+        .elementor-widget img,
+        .hfe-site-logo-img {
             max-width: 100% !important;
             height: auto !important;
             display: block !important;
         }
 
         /* Defensive: marquee/track elements should not cause page overflow */
-        .du-offer-viewport, .du-offer-track {
+        .du-offer-viewport,
+        .du-offer-track {
             max-width: 100% !important;
             overflow-x: hidden !important;
         }
 
         /* Avoid transform/backface artifacts producing scrollbars */
-        * { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+        * {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
     </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1192,7 +1206,7 @@
         }
 
         .nfd-wc-products {
-            self-align: flex-start !important;
+            align-self: flex-start !important;
             flex-grow: 0 !important
         }
 
@@ -3880,10 +3894,8 @@ flexibility(document.documentElement);
 </script>
 <![endif]-->
     <link rel="https://api.w.org/" href="/wp-json/" />
-    <link rel="alternate" title="JSON" type="application/json"
-        href="/wp-json/wp/v2/pages/234" />
-    <link rel="EditURI" type="application/rsd+xml" title="RSD"
-        href="/xmlrpc.php?rsd" />
+    <link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/pages/234" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
     <meta name="generator" content="WordPress 6.8.3" />
     <link rel='shortlink' href='/?p=234' />
     <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"
@@ -3918,8 +3930,7 @@ flexibility(document.documentElement);
     <link rel="icon" href="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-32x32.png" sizes="32x32" />
     <link rel="icon" href="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-180x180.png" />
-    <meta name="msapplication-TileImage"
-        content="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-270x270.png" />
+    <meta name="msapplication-TileImage" content="/wp-content/uploads/2025/04/cropped-cropped-Du-Logo-1-270x270.png" />
 
     <!-- Google Tag Manager -->
     <script>
@@ -4013,8 +4024,8 @@ flexibility(document.documentElement);
         <header id="masthead" class="site-header" role="banner" itemtype="https://schema.org/WPHeader"
             itemscope="itemscope">
             <header id="masthead" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
-                <p class="main-title bhf-hidden" itemprop="headline"><a href=""
-                        title="du Authorised" rel="home">du Authorised</a></p>
+                <p class="main-title bhf-hidden" itemprop="headline"><a href="" title="du Authorised" rel="home">du
+                        Authorised</a></p>
                 <div data-elementor-type="wp-post" data-elementor-id="9" class="elementor elementor-9">
                     <div class="elementor-element elementor-element-111fadf e-con-full elementor-hidden-mobile e-flex e-con e-parent"
                         data-id="111fadf" data-element_type="container">
@@ -4247,8 +4258,7 @@ flexibility(document.documentElement);
                                                 </li>
                                                 <li id="menu-item-387"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-351 current_page_item parent hfe-creative-menu">
-                                                    <a href="/index.html"
-                                                        class="hfe-menu-item">Corporate Packages</a>
+                                                    <a href="/index.html" class="hfe-menu-item">Corporate Packages</a>
                                                 </li>
 
                                                 <li id="menu-item-394"
@@ -4263,11 +4273,7 @@ flexibility(document.documentElement);
                                                     class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu">
                                                     <a href="/about.html" class="hfe-menu-item">About Us</a>
                                                 </li>
-                                                <li id="menu-item-392"
-                                                    class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu ">
-                                                    <a href="/contact-us.html" class="hfe-menu-item">Contact
-                                                        Us</a>
-                                                </li>
+
                                             </ul>
                                         </nav>
                                     </div>
@@ -5829,35 +5835,44 @@ flexibility(document.documentElement);
                                 </script>
                             </div>
                         </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <section id="du-faq" class="du-faq-section" aria-label="du corporate packages frequently asked questions">
-        <div class="du-faq-wrapper">
-            <h2>Corporate Internet FAQs</h2>
-            <p class="section-lede">Answers to the most common questions enterprise IT teams in Dubai, Abu Dhabi and the Northern Emirates ask before activating du corporate packages.</p>
-            <div class="du-faq-list">
-                <article class="du-faq-card">
-                    <h3>How fast can our business internet be installed?</h3>
-                    <p>Standard fibre sites go live in 3&ndash;5 working days after Ejari validation, while priority locations and ready buildings can be activated in as little as 48 hours. Our team escalates provisioning directly with du to keep lead times transparent.</p>
-                </article>
-                <article class="du-faq-card">
-                    <h3>Which documents are required for du corporate packages?</h3>
-                    <p>Submit a valid trade licence, owner Emirates ID, establishment card or visa copy (for mainland firms) and the latest Ejari or tenancy contract. Freezone and hospitality groups can also attach utility letters for smoother site surveys.</p>
-                </article>
-                <article class="du-faq-card">
-                    <h3>Do the plans include static IPs and managed security?</h3>
-                    <p>Yes. Every bundle ships with at least one routable static IPv4 address, enterprise-grade CPE, built-in firewall policies and optional add-ons such as Fortinet SD-WAN, 24&frasl;7 SOC monitoring and Microsoft Defender licences.</p>
-                </article>
-                <article class="du-faq-card">
-                    <h3>Can we bundle voice, IPTV or Microsoft 365 with the internet circuit?</h3>
-                    <p>All featured packages combine high-speed internet with SIP voice, VoIP handsets, IPTV headend feeds and cloud productivity licences. Tell us your preferred seat count and we will provide a custom quote with the right add-ons.</p>
-                </article>
-            </div>
-        </div>
-    </section>
+            <section id="du-faq" class="du-faq-section" aria-label="du corporate packages frequently asked questions">
+                <div class="du-faq-wrapper">
+                    <h2>Corporate Internet FAQs</h2>
+                    <p class="section-lede">Answers to the most common questions enterprise IT teams in Dubai, Abu Dhabi
+                        and the Northern Emirates ask before activating du corporate packages.</p>
+                    <div class="du-faq-list">
+                        <article class="du-faq-card">
+                            <h3>How fast can our business internet be installed?</h3>
+                            <p>Standard fibre sites go live in 3&ndash;5 working days after Ejari validation, while
+                                priority locations and ready buildings can be activated in as little as 48 hours. Our
+                                team escalates provisioning directly with du to keep lead times transparent.</p>
+                        </article>
+                        <article class="du-faq-card">
+                            <h3>Which documents are required for du corporate packages?</h3>
+                            <p>Submit a valid trade licence, owner Emirates ID, establishment card or visa copy (for
+                                mainland firms) and the latest Ejari or tenancy contract. Freezone and hospitality
+                                groups can also attach utility letters for smoother site surveys.</p>
+                        </article>
+                        <article class="du-faq-card">
+                            <h3>Do the plans include static IPs and managed security?</h3>
+                            <p>Yes. Every bundle ships with at least one routable static IPv4 address, enterprise-grade
+                                CPE, built-in firewall policies and optional add-ons such as Fortinet SD-WAN, 24&frasl;7
+                                SOC monitoring and Microsoft Defender licences.</p>
+                        </article>
+                        <article class="du-faq-card">
+                            <h3>Can we bundle voice, IPTV or Microsoft 365 with the internet circuit?</h3>
+                            <p>All featured packages combine high-speed internet with SIP voice, VoIP handsets, IPTV
+                                headend feeds and cloud productivity licences. Tell us your preferred seat count and we
+                                will provide a custom quote with the right add-ons.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
-</div>
+        </div>
         <!-- #main .site-main -->
 
         <footer id="colophon" class="site-footer" role="contentinfo" itemtype="http://schema.org/WPFooter"
@@ -6110,7 +6125,7 @@ flexibility(document.documentElement);
             }
         })();
     </script>
-    
+
     <script>
         const lazyloadRunObserver = () => {
             const lazyloadBackgrounds = document.querySelectorAll(`.e-con.e-parent:not(.e-lazyloaded)`);
@@ -6163,23 +6178,18 @@ flexibility(document.documentElement);
         });
     </script>
     <link rel='stylesheet' id='widget-social-icons-css'
-        href='/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.33.1' media='all' />
     <link rel='stylesheet' id='e-apple-webkit-css'
-        href='/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=3.33.1' media='all' />
     <link rel='stylesheet' id='e-animation-grow-css'
         href='/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-grow.min.css?ver=3.33.1'
         media='all' />
     <link rel='stylesheet' id='widget-image-css'
-        href='/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.33.1' media='all' />
     <link rel='stylesheet' id='widget-icon-list-css'
-        href='/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.33.1' media='all' />
     <link rel='stylesheet' id='widget-divider-css'
-        href='/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.33.1'
-        media='all' />
+        href='/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.33.1' media='all' />
     <script src="/wp-includes/js/dist/hooks.min.js" id="wp-hooks-js"></script>
     <script src="/wp-includes/js/dist/i18n.min.js" id="wp-i18n-js"></script>
     <script id="wp-i18n-js-after">
@@ -6455,10 +6465,9 @@ flexibility(document.documentElement);
             }
         };
     </script>
-    <script
-        src="/wp-content/uploads/pum/pum-site-scripts.js?defer&amp;generated=1761730511&amp;ver=1.21.5"
+    <script src="/wp-content/uploads/pum/pum-site-scripts.js?defer&amp;generated=1761730511&amp;ver=1.21.5"
         id="popup-maker-site-js"></script>
-   
+
     <script src="/wp-includes/js/dist/vendor/wp-polyfill.min.js" id="wp-polyfill-js"></script>
     <script id="wpcf7-recaptcha-js-before">
         var wpcf7_recaptcha = {
@@ -6541,9 +6550,12 @@ flexibility(document.documentElement);
             </div>
             <div class="popup-body">
                 <p>Sign up now to get a free consultation and exclusive discounts.</p>
-                <form id="popupContactForm">
-                    <input type="text" id="Name" name="name" placeholder="Your Name" required>
-                    <input type="tel" id="Phone" name="phone" placeholder="Phone Number" required>
+                <form id="contact-form">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                    <textarea id="message" name="message" placeholder="Your Message" rows="2" required
+                        style="width: 100%; padding: 10px; margin: 4px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 15px; transition: border-color 0.3s; height: 60px; resize: none;"></textarea>
                     <button type="submit" class="submit-btn">Get Offer</button>
                 </form>
                 <p class="popup-response" id="popupResponse" style="margin-top: 10px; font-size: 0.9em;"></p>
@@ -6551,14 +6563,15 @@ flexibility(document.documentElement);
         </div>
     </div>
     <script>
-        // Google Apps Script URL for form submission
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbztCBZc3VPXCtQsVQabC6OWnUV-xuGCshC7n8zAAegRsethwQRJmnHutiJXVslwcK0v/exec'; // Replace with your Apps Script Web App URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyFnjT1Ml2PPCy3K-PoY-kyXnovM4H93jiRfXZq8WdrR3NG7a0ZL2aZlwPyCzHfhPCH/exec';
 
-        document.getElementById('popupContactForm').addEventListener('submit', function (e) {
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const data = {
-                Name: document.getElementById('Name').value,
-                Phone: document.getElementById('Phone').value,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
             };
 
             fetch(scriptURL, {
@@ -6570,7 +6583,10 @@ flexibility(document.documentElement);
                     alert("Form submitted successfully!");
                     document.getElementById('contact-form').reset();
                 })
-
+                .catch(error => {
+                    alert("Error submitting form.");
+                    console.error('Error!', error.message);
+                });
         });
     </script>
     <style>
@@ -6595,10 +6611,10 @@ flexibility(document.documentElement);
 
         .popup-content {
             background: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
             width: 90%;
-            max-width: 400px;
+            max-width: 450px;
             position: relative;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -6636,24 +6652,24 @@ flexibility(document.documentElement);
 
         .popup-body input {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
+            padding: 10px;
+            margin: 4px 0;
             border: 1px solid #ddd;
             border-radius: 5px;
             box-sizing: border-box;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .submit-btn {
             background: #302b63;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 10px 20px;
             width: 100%;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: background 0.3s;
             font-weight: bold;
         }
@@ -6704,7 +6720,9 @@ flexibility(document.documentElement);
 
                 const data = {
                     name: document.getElementById('popup-name').value,
+                    email: document.getElementById('popup-email') ? document.getElementById('popup-email').value : '',
                     phone: document.getElementById('popup-phone').value,
+                    message: document.getElementById('popup-message') ? document.getElementById('popup-message').value : '',
                     source: 'Corporate Popup'
                 };
 
@@ -6832,37 +6850,45 @@ flexibility(document.documentElement);
     </script>
 </body>
 
-    <!-- Final defensive fix: ensure no horizontal scrolling appears -->
-    <style id="overflow-fix">
-        html, body, #page { overflow-x: hidden !important; max-width: 100vw !important; }
-        /* Prevent elements from escaping viewport by accidental large transforms */
-        * { box-sizing: border-box; }
-    </style>
-    <script>
-        // Apply inline style as a last-resort (scripts may toggle overflow later)
-        (function keepOverflowHidden(){
-            try {
-                document.documentElement.style.overflowX = 'hidden';
-                document.body.style.overflowX = 'hidden';
-            } catch(e){}
-        })();
-        // Re-apply on resize / DOM changes
-        window.addEventListener('resize', function(){
+<!-- Final defensive fix: ensure no horizontal scrolling appears -->
+<style id="overflow-fix">
+    html,
+    body,
+    #page {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+
+    /* Prevent elements from escaping viewport by accidental large transforms */
+    * {
+        box-sizing: border-box;
+    }
+</style>
+<script>
+    // Apply inline style as a last-resort (scripts may toggle overflow later)
+    (function keepOverflowHidden() {
+        try {
             document.documentElement.style.overflowX = 'hidden';
             document.body.style.overflowX = 'hidden';
-        });
-        // Observe mutations that might add inline overflow styles and clear them
-        try {
-            var obs = new MutationObserver(function(m){
-                m.forEach(function(){
-                    if (document.documentElement.style.overflowX !== 'hidden') document.documentElement.style.overflowX = 'hidden';
-                    if (document.body.style.overflowX !== 'hidden') document.body.style.overflowX = 'hidden';
-                });
+        } catch (e) { }
+    })();
+    // Re-apply on resize / DOM changes
+    window.addEventListener('resize', function () {
+        document.documentElement.style.overflowX = 'hidden';
+        document.body.style.overflowX = 'hidden';
+    });
+    // Observe mutations that might add inline overflow styles and clear them
+    try {
+        var obs = new MutationObserver(function (m) {
+            m.forEach(function () {
+                if (document.documentElement.style.overflowX !== 'hidden') document.documentElement.style.overflowX = 'hidden';
+                if (document.body.style.overflowX !== 'hidden') document.body.style.overflowX = 'hidden';
             });
-            obs.observe(document.documentElement, { attributes: true, attributeFilter: ['style'], subtree: false });
-            obs.observe(document.body, { attributes: true, attributeFilter: ['style'], subtree: false });
-        } catch(e){}
-    </script>
+        });
+        obs.observe(document.documentElement, { attributes: true, attributeFilter: ['style'], subtree: false });
+        obs.observe(document.body, { attributes: true, attributeFilter: ['style'], subtree: false });
+    } catch (e) { }
+</script>
 
 </body>
 

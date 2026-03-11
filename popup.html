@@ -1,227 +1,185 @@
-  <!-- Promotional Popup -->
-    <div id="promo-popup" class="popup-overlay" style="display: none;">
-        <div class="popup-content">
-            <button id="close-popup" class="close-btn">&times;</button>
-            <div class="popup-header">
-                <h2>Exclusive Corporate Offer!</h2>
-                <p>Get the best internet plans for your business.</p>
-            </div>
-            <div class="popup-body">
-                <p>Sign up now to get a free consultation and exclusive discounts.</p>
-                <form id="popupContactForm">
-                    <input type="text" id="Name" name="name" placeholder="Your Name" required>
-                    <input type="tel" id="Phone" name="phone" placeholder="Phone Number" required>
-                    <button type="submit" class="submit-btn">Get Offer</button>
-                </form>
-                <p class="popup-response" id="popupResponse" style="margin-top: 10px; font-size: 0.9em;"></p>
-            </div>
+<!-- Promotional Popup -->
+<div id="promo-popup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+        <button id="close-popup" class="close-btn">&times;</button>
+        <div class="popup-header">
+            <h2>Exclusive Corporate Offer!</h2>
+            <p>Get the best internet plans for your business.</p>
+        </div>
+        <div class="popup-body">
+            <p>Sign up now to get a free consultation and exclusive discounts.</p>
+            <form id="contact-form">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Email Address" required>
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                <textarea id="message" name="message" placeholder="Your Message" rows="2" required
+                    style="width: 100%; padding: 10px; margin: 4px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 15px; transition: border-color 0.3s; height: 60px; resize: none;"></textarea>
+                <button type="submit" class="submit-btn">Get Offer</button>
+            </form>
+            <p class="popup-response" id="popupResponse" style="margin-top: 10px; font-size: 0.9em;"></p>
         </div>
     </div>
-    <script>
-        // Google Apps Script URL for form submission
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbztCBZc3VPXCtQsVQabC6OWnUV-xuGCshC7n8zAAegRsethwQRJmnHutiJXVslwcK0v/exec'; // Replace with your Apps Script Web App URL
+</div>
+<style>
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 99999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
 
-        document.getElementById('popupContactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const data = {
-                Name: document.getElementById('Name').value,
-                Phone: document.getElementById('Phone').value,
-            };
+    .popup-overlay.show {
+        opacity: 1;
+    }
 
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(data)
-            })
-                .then(response => response.text())
-                .then(result => {
-                    alert("Form submitted successfully!");
-                    document.getElementById('contact-form').reset();
-                })
+    .popup-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 450px;
+        position: relative;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
 
-        });
-    </script>
-    <style>
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+    .popup-overlay.show .popup-content {
+        transform: translateY(0);
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #555;
+        line-height: 1;
+    }
+
+    .popup-header h2 {
+        color: #302b63;
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+
+    .popup-body p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .popup-body input {
+        width: 100%;
+        padding: 10px;
+        margin: 4px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+
+    .submit-btn {
+        background: #302b63;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        transition: background 0.3s;
+        font-weight: bold;
+    }
+
+    .submit-btn:hover {
+        background: #4a438a;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyFnjT1Ml2PPCy3K-PoY-kyXnovM4H93jiRfXZq8WdrR3NG7a0ZL2aZlwPyCzHfhPCH/exec';
+        
+        // Utility: send sizing and lifecycle messages to parent when embedded
+        function postToParent(msg) { try { if (window.parent && window.parent !== window) window.parent.postMessage(msg, '*'); } catch (e) { } }
+
+        function sendPopupHeight() {
+            try {
+                var card = document.querySelector('#promo-popup .popup-content');
+                if (!card) return;
+                var rect = card.getBoundingClientRect();
+                var height = Math.ceil(rect.height);
+                postToParent({ type: 'popup-height', height: height });
+            } catch (e) { }
         }
 
-        .popup-overlay.show {
-            opacity: 1;
-        }
-
-        .popup-content {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-
-        .popup-overlay.show .popup-content {
-            transform: translateY(0);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: #555;
-            line-height: 1;
-        }
-
-        .popup-header h2 {
-            color: #302b63;
-            margin-bottom: 10px;
-            margin-top: 0;
-        }
-
-        .popup-body p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .popup-body input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-
-        .submit-btn {
-            background: #302b63;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            width: 100%;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-            transition: background 0.3s;
-            font-weight: bold;
-        }
-
-        .submit-btn:hover {
-            background: #4a438a;
-        }
-    </style>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Utility: send sizing and lifecycle messages to parent when embedded
-            function postToParent(msg){ try{ if(window.parent && window.parent !== window) window.parent.postMessage(msg, '*'); }catch(e){} }
-
-            function sendPopupHeight(){
-                try{
-                    var card = document.querySelector('#promo-popup .popup-content');
-                    if(!card) return;
-                    // include margins by measuring bounding rect
-                    var rect = card.getBoundingClientRect();
-                    var height = Math.ceil(rect.height + 0);
-                    postToParent({ type: 'popup-height', height: height });
-                }catch(e){}
-            }
-
-            // Show popup after delay
-            setTimeout(function () {
-                var popup = document.getElementById('promo-popup');
+        // Show popup
+        setTimeout(function () {
+            var popup = document.getElementById('promo-popup');
+            if (popup) {
                 popup.style.display = 'flex';
-                // Trigger reflow to enable transition
-                popup.offsetHeight;
+                popup.offsetHeight; // reflow
                 popup.classList.add('show');
-                // send initial height (twice with a small delay to allow fonts/layout)
                 sendPopupHeight();
-                setTimeout(sendPopupHeight, 120);
-            }, 3000); // 3 seconds delay
+                setTimeout(sendPopupHeight, 300);
+            }
+        }, 100);
 
-            // Close button behaviour
-            document.getElementById('close-popup').addEventListener('click', function () {
+        // Close button
+        var closeBtn = document.getElementById('close-popup');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
                 var popup = document.getElementById('promo-popup');
                 popup.classList.remove('show');
                 postToParent({ type: 'popup-close' });
-                setTimeout(function () {
-                    popup.style.display = 'none';
-                }, 300);
+                setTimeout(function () { popup.style.display = 'none'; }, 300);
             });
+        }
 
-            // Close on click outside
-            document.getElementById('promo-popup').addEventListener('click', function (e) {
-                if (e.target === this) {
-                    this.classList.remove('show');
-                    postToParent({ type: 'popup-close' });
-                    setTimeout(function () {
-                        this.style.display = 'none';
-                    }.bind(this), 300);
-                }
-            });
+        // Standardized Form Submission Logic
+        const form = document.getElementById('contact-form');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const data = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    message: document.getElementById('message').value
+                };
 
-            // Form submission logic (keep existing behaviour but notify parent)
-            // Try to find either form id used in this file
-            var form = document.getElementById('popupContactForm') || document.getElementById('popup-form') || document.getElementById('popupContactForm');
-            if(form){
-                form.addEventListener('submit', function(e){
-                    e.preventDefault();
-                    var submitBtn = form.querySelector('.submit-btn');
-                    var originalText = submitBtn ? submitBtn.innerText : '';
-                    if(submitBtn){ submitBtn.innerText = 'Sending...'; submitBtn.disabled = true; }
-
-                    // Collect inputs in a forgiving way
-                    var nameEl = form.querySelector('input[name="Name"]') || form.querySelector('input[name="name"]') || document.getElementById('Name') || document.getElementById('popup-name');
-                    var phoneEl = form.querySelector('input[name="Phone"]') || form.querySelector('input[name="phone"]') || document.getElementById('Phone') || document.getElementById('popup-phone');
-                    var data = {};
-                    if(nameEl) data.Name = nameEl.value || nameEl.textContent || '';
-                    if(phoneEl) data.Phone = phoneEl.value || phoneEl.textContent || '';
-
-                    // Attempt submit: if fetch to scriptURL exists earlier use that, otherwise skip network and just notify parent
-                    var scriptURL = typeof window.scriptURL !== 'undefined' ? window.scriptURL : null;
-                    // If a scriptURL variable exists in this document scope earlier, use it; otherwise try the commonly used one
-                    if(!scriptURL) scriptURL = 'https://script.google.com/macros/s/AKfycbztCBZc3VPXCtQsVQabC6OWnUV-xuGCshC7n8zAAegRsethwQRJmnHutiJXVslwcK0v/exec';
-
-                    fetch(scriptURL, { method: 'POST', body: new URLSearchParams(data) }).then(function(r){ return r.text(); }).then(function(){
-                        var resp = document.getElementById('popupResponse') || document.getElementById('response');
-                        if(resp){ resp.style.color = 'green'; resp.textContent = "Thanks! We'll contact you soon."; }
-                        if(form.reset) form.reset();
-                        if(submitBtn){ submitBtn.innerText = originalText; submitBtn.disabled = false; }
-                        postToParent({ type: 'popup-submitted', success: true });
-                        setTimeout(function(){ postToParent({ type: 'popup-close' }); }, 900);
-                    }).catch(function(err){
-                        var resp = document.getElementById('popupResponse') || document.getElementById('response');
-                        if(resp){ resp.style.color = 'green'; resp.textContent = 'Form Submited Successfully.'; }
-                        if(submitBtn){ submitBtn.innerText = originalText; submitBtn.disabled = false; }
-                        postToParent({ type: 'popup-submitted', success: false });
-                    }).finally(function(){ sendPopupHeight(); });
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.text())
+                .then(result => {
+                    alert("Form submitted successfully!");
+                    form.reset();
+                    postToParent({ type: 'popup-submitted' });
+                })
+                .catch(error => {
+                    alert("Error submitting form.");
+                    console.error('Error!', error.message);
                 });
-            }
+            });
+        }
 
-            // Keep parent updated on resize and content changes
-            window.addEventListener('resize', sendPopupHeight, {passive:true});
-            try{ var observerTarget = document.querySelector('#promo-popup .popup-content'); if(observerTarget){ new MutationObserver(sendPopupHeight).observe(observerTarget, {childList:true, subtree:true, characterData:true}); } }catch(e){}
-            // Also send a few repeated height messages shortly after load (helpful for fonts/images)
-            setTimeout(sendPopupHeight, 300);
-            setTimeout(sendPopupHeight, 800);
-        });
-    </script>
+        // Parent communication house keeping
+        window.addEventListener('resize', sendPopupHeight, { passive: true });
+        setTimeout(sendPopupHeight, 800);
+    });
+</script>
